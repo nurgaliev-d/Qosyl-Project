@@ -1,0 +1,16 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; /* Adjust spacing between cards */
+}
+
+mat-card {
+  width: 300px; /* Set a fixed width for the cards */
+  max-width: 100%; /* Ensure responsiveness */
+}
+
+mat-card img {
+  width: 100%; /* Set image width to fill the card */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Cover the card area */
+}

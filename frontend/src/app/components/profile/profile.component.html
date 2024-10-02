@@ -1,0 +1,9 @@
+<div *ngIf="userProfile">
+  <h2>{{ userProfile.name }} {{ userProfile.surname }}</h2>
+  <p>Email: {{ userProfile.email }}</p>
+  <p>Gender: {{ userProfile.gender }}</p>
+  <p>Interests: {{ userProfile.interests }}</p>
+  <div *ngIf="isCurrentUser">
+    <button>Edit Profile</button>
+  </div>
+</div>
