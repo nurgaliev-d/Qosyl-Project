@@ -24,4 +24,11 @@ export class ProductComponent implements OnInit {
       }));
     });
   }
+  buyProduct(productId: number): void {
+    // Logic for buying the product
+    // You can navigate to a checkout page or show a confirmation message
+    console.log(`Product ${productId} purchased!`);
+    // Example: Navigate to checkout (assuming you have a router set up)
+    // this.router.navigate(['/checkout', productId]);
+  }
 }

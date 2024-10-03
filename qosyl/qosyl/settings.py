@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'main',
     'corsheaders',
     'rest_framework',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -55,13 +56,22 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+CORS_ALLOW_ALL_ORIGINS = True 
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",
 ]
 
 ROOT_URLCONF = 'qosyl.urls'
+
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 TEMPLATES = [

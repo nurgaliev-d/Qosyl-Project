@@ -1,22 +1,15 @@
-<div *ngIf="products.length">
-  <h2>Products</h2>
-  <div class="card-container">
-    <mat-card *ngFor="let product of products">
-      <mat-card-header>
-        <mat-card-title>{{ product.name }}</mat-card-title>
-      </mat-card-header>
-      <img *ngIf="product.image" [src]="product.image" alt="{{ product.name }}">
-      <mat-card-content>
-        <p>{{ product.description }}</p>
-        <p>Price: {{ product.price | currency }}</p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>Buy Now</button>
-      </mat-card-actions>
-    </mat-card>
+<div class="products-container">
+  <div *ngFor="let product of products" class="product-card">
+    <img *ngIf="product.image" [src]="product.image" alt="{{ product.name }}" class="product-image" />
+    <div class="product-info">
+      <h2 class="product-name">{{ product.name }}</h2>
+      <p class="product-description">{{ product.description }}</p>
+      <p class="product-price">Price: {{ product.price | currency }}</p>
+      <button class="buy-button" (click)="buyProduct(product.id)">Buy Now</button>
+    </div>
   </div>
 </div>
 
 <div *ngIf="!products.length">
-  No products available.
+  No products available at the moment.
 </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -9,43 +9,38 @@ import { ApiService } from '../services/services/api.service';
 })
 export class ProfileComponent implements OnInit {
   userProfile: any = {};
-  isCurrentUser: boolean = false;
+  isCurrentUser: boolean = true;
 
   constructor(
     private apiService: ApiService,
-    private route: ActivatedRoute
+    private router: Router // Import router for redirection
   ) {}
 
   ngOnInit(): void {
-    const userId = this.route.snapshot.paramMap.get('user_id');
-    if (userId) {
-      this.isCurrentUser = false;
-      this.loadOtherUserProfile(userId);
-    } else {
-      this.isCurrentUser = true;
-      this.loadCurrentUserProfile();
-    }
+    this.loadCurrentUserProfile();
   }
 
   loadCurrentUserProfile(): void {
     this.apiService.getCurrentUserProfile().subscribe(
       data => {
+        console.log(data);
         this.userProfile = data;
       },
       error => {
         console.error('Error fetching profile:', error);
       }
     );
+}
+
+  editProfile(): void {
+    console.log('Edit profile clicked');
   }
 
-  loadOtherUserProfile(userId: string): void {
-    this.apiService.getOtherUserProfile(userId).subscribe(
-      data => {
-        this.userProfile = data;
-      },
-      error => {
-        console.error('Error fetching other user profile:', error);
-      }
-    );
+  logout(): void {
+    // Clear token or any authentication info
+    localStorage.removeItem('token'); // If token is stored in localStorage
+
+    // Redirect to login page
+    this.router.navigate(['/login']);
   }
 }
