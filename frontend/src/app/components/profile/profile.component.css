@@ -1,18 +1,13 @@
-.profile-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+h1 {
+  color: #3f51b5;
 }
 
-.logout-button {
-  background-color: #f44336;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
 }
 
-.logout-button:hover {
-  background-color: #d32f2f;
+p {
+  font-size: 1.2em;
 }

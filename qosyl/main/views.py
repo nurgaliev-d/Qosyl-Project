@@ -1,9 +1,16 @@
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework import status
 from .models import *
 from .serializers import *
 from django.shortcuts import get_object_or_404
 
+@api_view(['GET'])
+def users_list(request):
+    users = User.objects.all()
+    serializer = UserSerializer(users, many=True)
+    return Response(serializer.data)
 
 @api_view(['GET'])
 def organization_list(request):
@@ -11,6 +18,7 @@ def organization_list(request):
     serializer = OrganizationSerializer(organizations, many=True)
     return Response(serializer.data)
 
+@api_view(['GET'])
 def user_profile_list(request):
     user_profiles = UserProfile.objects.all()
     serializer = UserProfileSerializer(user_profiles, many=True)
@@ -23,8 +31,9 @@ def product_list(request):
     return Response(serializer.data)
 
 @api_view(['GET'])
-def current_user_profile(request):
-    user_profile = get_object_or_404(UserProfile, user=request.user)
+@permission_classes([IsAuthenticated])
+def get_user_profile(request):
+    user_profile = UserProfile.objects.get(user=request.user)
     serializer = UserProfileSerializer(user_profile)
     return Response(serializer.data)
 

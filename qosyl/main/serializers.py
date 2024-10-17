@@ -1,6 +1,11 @@
 from rest_framework import serializers
 from .models import *
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'first_name', 'last_name']
+
 class OrganizationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Organization
@@ -17,12 +22,6 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         fields = ['user', 'name', 'surname', 'email', 'gender', 'interests', 'subscribed_organizations']
-        
-class UserProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UserProfile
-        fields = ['user', 'first_name', 'last_name', 'email', 'gender', 'interests']
-        # serializers.py
 
 class PublicationSerializer(serializers.ModelSerializer):
     organization = serializers.PrimaryKeyRelatedField(queryset=Organization.objects.all())

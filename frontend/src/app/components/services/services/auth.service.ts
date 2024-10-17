@@ -17,7 +17,7 @@ export class AuthService {
 
     logout() {
         localStorage.removeItem('access_token');
-        this.router.navigate(['/login']); // Redirect to login page
+        this.router.navigate(['/login']);
     }
 
     isAuthenticated() {

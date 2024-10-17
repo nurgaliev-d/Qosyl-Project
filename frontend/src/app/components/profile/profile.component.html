@@ -1,18 +1,13 @@
-<div class="profile-container" *ngIf="userProfile">
-  <div class="profile-header">
-    <h1>Your Profile</h1>
-    <button class="logout-button" (click)="logout()">Logout</button>
+<div *ngIf="userProfile">
+  <h1>User Profile</h1>
+  <div>
+    <h2>{{ userProfile.name }} {{ userProfile.surname }}</h2>
+    <img [src]="userProfile.profile_image" alt="Profile Image" *ngIf="userProfile.profile_image" />
+    <p>Email: {{ userProfile.email }}</p>
+    <p>Gender: {{ userProfile.gender }}</p>
+    <p>Interests: {{ userProfile.interests }}</p>
   </div>
-  <div class="profile-info">
-    <p><strong>Name:</strong> {{ userProfile.name }}</p>
-    <p><strong>Surname:</strong> {{ userProfile.surname }}</p>
-    <p><strong>Email:</strong> {{ userProfile.email }}</p>
-    <p><strong>Gender:</strong> {{ userProfile.gender }}</p>
-    <p><strong>Interests:</strong> {{ userProfile.interests }}</p>
-  </div>
-  <button (click)="editProfile()">Edit Profile</button>
 </div>
-
-<div *ngIf="!userProfile">
-  <p>Loading profile...</p>
+<div *ngIf="error">
+  <p>{{ error }}</p>
 </div>

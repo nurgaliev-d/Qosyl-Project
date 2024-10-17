@@ -3,6 +3,7 @@ from django.db import models
 
 # UserProfile model
 class UserProfile(models.Model):
+    profile_image = models.ImageField(upload_to='profile_images/', null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     surname = models.CharField(max_length=100)

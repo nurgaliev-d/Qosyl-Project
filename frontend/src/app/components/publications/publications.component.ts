@@ -7,6 +7,7 @@ import { ApiService } from '../services/services/api.service';
   styleUrls: ['./publications.component.css']
 })
 export class PublicationsComponent implements OnInit {
+  router: any;
 likePublication(arg0: any) {
 throw new Error('Method not implemented.');
 }
@@ -19,14 +20,18 @@ throw new Error('Method not implemented.');
   }
 
   loadPublications(): void {
-    this.apiService.getPublications().subscribe(
-      (data) => {
-        this.publications = data;
-        console.log(this.publications);  // Check if data is being logged here
-      },
-      (error) => {
-        console.error('Error fetching publications', error);
-      }
-    );
-  }
+    this.apiService.getPublications().subscribe({
+        next: (data: any[]) => {
+            this.publications = data;
+        },
+        error: (error) => {
+            if (error.status === 401) {
+                this.apiService.logout();
+                this.router.navigate(['/login']);
+            } else {
+                console.error('Error fetching publications:', error);
+            }
+        }
+    });
+}
 }
