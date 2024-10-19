@@ -19,6 +19,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { UsersComponent } from './components/users/users.component';
+import { MatListModule } from '@angular/material/list';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -35,6 +37,7 @@ export function tokenGetter() {
     PublicationsComponent,
     LoginComponent,
     NotFoundComponent,
+    UsersComponent,
   ],
   imports: [
     JwtModule.forRoot({
@@ -53,6 +56,7 @@ export function tokenGetter() {
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatListModule,
   ],
   providers: [
     provideAnimationsAsync()

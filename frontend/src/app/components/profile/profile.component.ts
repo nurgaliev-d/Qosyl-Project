@@ -8,39 +8,31 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  userProfile: any = {};
-  isCurrentUser: boolean = true;
+  userProfile: any;
+  error: string | null = null;
 
-  constructor(
-    private apiService: ApiService,
-    private router: Router // Import router for redirection
-  ) {}
+  constructor(private apiService: ApiService, private router: Router) {}
 
   ngOnInit(): void {
-    this.loadCurrentUserProfile();
+    this.fetchUserProfile();
   }
 
-  loadCurrentUserProfile(): void {
-    this.apiService.getCurrentUserProfile().subscribe(
-      data => {
-        console.log(data);
-        this.userProfile = data;
-      },
-      error => {
-        console.error('Error fetching profile:', error);
-      }
-    );
-}
-
-  editProfile(): void {
-    console.log('Edit profile clicked');
-  }
-
-  logout(): void {
-    // Clear token or any authentication info
-    localStorage.removeItem('token'); // If token is stored in localStorage
-
-    // Redirect to login page
-    this.router.navigate(['/login']);
+  fetchUserProfile(): void {
+    const token = this.apiService.getToken();
+    console.log('Token:', token); // Log the token to see its value
+    this.apiService.getUserProfile().subscribe({
+        next: (data) => {
+            this.userProfile = data;
+        },
+        error: (err) => {
+            if (err.status === 401) {
+                this.apiService.logout();
+                this.router.navigate(['/login']);
+            } else {
+                this.error = 'Failed to load profile';
+                console.error('Error fetching user profile:', err);
+            }
+        }
+    });
   }
 }

@@ -10,6 +10,8 @@ import { ApiService } from '../services/services/api.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  errorMessage: string | null = null;
+  isLoading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -22,21 +24,31 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    if (this.apiService.isAuthenticated()) {
+      this.router.navigate(['/users']);
+    }
+  }
 
   onSubmit(): void {
     if (this.loginForm.valid) {
       const { username, password } = this.loginForm.value;
-      this.apiService.login(username, password).subscribe(
-        response => {
+      this.isLoading = true;
+
+      this.apiService.login(username, password).subscribe({
+        next: (response) => {
           console.log('Login successful:', response);
-          this.router.navigate(['/organizations']);
+          this.apiService.setToken(response.access_token);
+          this.router.navigate(['/publications']);
         },
-        error => {
-          console.error('Login failed:', error);
+        error: (err) => {
+          console.error('Login failed:', err);
+          this.errorMessage = 'Invalid username or password. Please try again.';
+        },
+        complete: () => {
+          this.isLoading = false; // Reset loading state
         }
-      );
+      });
     }
   }
-  
 }
