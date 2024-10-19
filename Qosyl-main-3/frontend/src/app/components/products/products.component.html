@@ -1,0 +1,15 @@
+<div class="products-container">
+  <div *ngFor="let product of products" class="product-card">
+    <img *ngIf="product.image" [src]="product.image" alt="{{ product.name }}" class="product-image" />
+    <div class="product-info">
+      <h2 class="product-name">{{ product.name }}</h2>
+      <p class="product-description">{{ product.description }}</p>
+      <p class="product-price">Price: {{ product.price | currency }}</p>
+      <button class="buy-button" (click)="buyProduct(product.id)">Buy Now</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!products.length">
+  No products available at the moment.
+</div>

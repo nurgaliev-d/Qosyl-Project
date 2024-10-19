@@ -1,0 +1,88 @@
+.publications-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.publication-card {
+    background-color: white;
+    border: 1px solid #e6e6e6;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    width: calc(33.33% - 20px); /* Three cards per row */
+    transition: transform 0.2s;
+}
+
+.publication-card:hover {
+    transform: scale(1.02); /* Slight zoom on hover */
+}
+
+.publication-image {
+    width: 100%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.publication-info {
+    padding: 15px;
+}
+
+.publication-title {
+    font-size: 18px;
+    margin: 0 0 10px 0;
+}
+
+.publication-topic {
+    color: #666;
+    margin: 0 0 15px 0;
+}
+
+.publication-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.posted-by {
+    font-size: 14px;
+    color: #999;
+}
+
+.likes {
+    font-size: 14px;
+    color: #999;
+}
+
+.like-button {
+    background-color: #3897f0; /* Instagram blue */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.like-button:hover {
+    background-color: #2874cc; /* Darker blue on hover */
+}
+
+.no-publications {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+@media (max-width: 900px) {
+    .publication-card {
+        width: calc(50% - 20px); /* Two cards per row on medium screens */
+    }
+}
+
+@media (max-width: 600px) {
+    .publication-card {
+        width: 100%; /* Full width on small screens */
+    }
+}
