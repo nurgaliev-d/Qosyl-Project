@@ -1,0 +1,6 @@
+<div *ngFor="let comment of comments">
+  <small>By {{comment.author}} on {{comment.created_at}}</small>
+  <p>{{ comment.content }}</p>
+  <div *ngIf="comment.content == '' ">
+    <p>No comments yet. Be first to comment!</p></div>
+</div>

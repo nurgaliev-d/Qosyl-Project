@@ -20,6 +20,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SinglePublicationComponent } from './components/single-publication/single-publication.component';
+import { CommentsComponent } from './components/comments/comments.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -36,6 +37,7 @@ export function tokenGetter() {
         LoginComponent,
         NotFoundComponent,
         SinglePublicationComponent,
+        CommentsComponent,
     ],
     bootstrap: [AppComponent], imports: [JwtModule.forRoot({
             config: {

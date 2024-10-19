@@ -15,15 +15,9 @@
 <hr>
 <ul>
 
-
-<div *ngFor="let comment of comments">
-    <p>{{ comment.content }}</p>
-    <small>{{comment.author}}</small>
-    <small>{{ comment.created_at }}</small>
-  <div *ngIf="comment.content == '' ">
-  <p>No comments yet. Be first to comment!</p></div>
-</div>
+<app-comments></app-comments>
 </ul>
+
 <!--{%  if user.is_authenticated  and user.username == post.author.username %}-->
 <!--<a href = "{% url 'post_edit' post.pk %}"><button type="button"> Edit post</button></a>-->
 <!--<form method="POST" action="{% url 'post_delete' post.pk %}">-->

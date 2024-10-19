@@ -26,23 +26,23 @@ export class SinglePublicationComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadPublication();
-    this.loadComments()
+    // this.loadComments()
   }
 
-  loadComments(): void{
-    this.route.paramMap.subscribe((params) => {
-      const publication = Number(params.get('publication'));
-      this.apiService.getComments(publication).subscribe(
-        (data) => {
-          this.comments = data;
-          console.log(this.comments);
-        },
-        (error) => {
-          console.error('Error fetching comments', error);
-        }
-      );
-    })
-  }
+  // loadComments(): void{
+  //   this.route.paramMap.subscribe((params) => {
+  //     const publication = Number(params.get('publication'));
+  //     this.apiService.getComments(publication).subscribe(
+  //       (data) => {
+  //         this.comments = data;
+  //         console.log(this.comments);
+  //       },
+  //       (error) => {
+  //         console.error('Error fetching comments', error);
+  //       }
+  //     );
+  //   })
+  // }
   // loadComments(): void {
   //   this.apiService.getComments().subscribe(
   //     (data) => {

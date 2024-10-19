@@ -13,7 +13,10 @@ class PublicationAdmin(admin.ModelAdmin):
 class CommentAdmin(admin.ModelAdmin):
   pass
 
+class OrganizationAdmin(admin.ModelAdmin):
+  pass
 
 admin.site.unregister(Publication)
 admin.site.register(Publication, PublicationAdmin)
 admin.site.register(Comment, CommentAdmin)
+admin.site.register(Organization, OrganizationAdmin)
