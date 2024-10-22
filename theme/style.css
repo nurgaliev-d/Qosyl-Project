@@ -1,17 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
 
-:root {  
-  --color-main: #2196F3; /* Основной цвет - яркий синий */  
-  --color-main-light: #BBDEFB; /* Светлый оттенок основного цвета - светло-синий */  
-  --color-dark: #1976D2; /* Темный цвет - насыщенный синий */  
-  --color-dark-medium: #90CAF9; /* Средний темный цвет - мягкий синий */  
-  --color-dark-light: #E3F2FD; /* Светлый темный цвет - очень светлый синий */  
-  --color-light: #E3F2FD; /* Светлый цвет для фона - светло-голубой */  
-  --color-gray: #8397b3; /* Серый цвет - очень светло-серый */  
-  --color-light-gray: #FFFFFF; /* Более светлый серый цвет - белый */  
-  --color-bg: #FAFAFA; /* Цвет фона - светло-серый */  
-  --color-success: #FFEB3B; /* Цвет успеха - яркий светлый желтый */  
-  --color-error: #FF7043; /* Цвет ошибки - яркий оранжевый для контраста */  
+:root {  --color-main: #8BC34A; /* Зеленый лайм (основной цвет) */
+  --color-main-light: #FFD54F; /* Светлый желтый (вторичный цвет) */  --color-dark: #4CAF50; /* Традиционный зеленый (темный цвет) */
+  --color-dark-medium: #FFEB3B; /* Яркий желтый (средний темный цвет) */  --color-dark-light: #E6EE9C; /* Светло-зеленый (светлый темный цвет) */
+  --color-light: #FFFFFF; /* Белый (светлый цвет для фона) */  --color-gray: #B0BEC5; /* Серый цвет */
+  --color-light-gray: #CFD8DC; /* Более светлый серый цвет */  --color-bg: #F9FBE7; /* Светло-желтый (цвет фона) */
+  --color-success: #5dd693; /* Цвет успеха */  --color-error: #fc4b0b; /* Цвет ошибки */
 }
 
 
