@@ -1,18 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
 
-:root {
-  --color-main: #71c6dd;
-  --color-main-light: #e1f6fb;
-  --color-dark: #3f4156;
-  --color-dark-medium: #51546e;
-  --color-dark-light: #696d97;
-  --color-light: #e5e5e5;
-  --color-gray: #8b8b8b;
-  --color-light-gray: #b2bdbd;
-  --color-bg: #2d2d39;
-  --color-success: #5dd693;
-  --color-error: #fc4b0b;
+:root {  
+  --color-main: #2196F3; /* Основной цвет - яркий синий */  
+  --color-main-light: #BBDEFB; /* Светлый оттенок основного цвета - светло-синий */  
+  --color-dark: #1976D2; /* Темный цвет - насыщенный синий */  
+  --color-dark-medium: #90CAF9; /* Средний темный цвет - мягкий синий */  
+  --color-dark-light: #E3F2FD; /* Светлый темный цвет - очень светлый синий */  
+  --color-light: #E3F2FD; /* Светлый цвет для фона - светло-голубой */  
+  --color-gray: #8397b3; /* Серый цвет - очень светло-серый */  
+  --color-light-gray: #FFFFFF; /* Более светлый серый цвет - белый */  
+  --color-bg: #FAFAFA; /* Цвет фона - светло-серый */  
+  --color-success: #FFEB3B; /* Цвет успеха - яркий светлый желтый */  
+  --color-error: #FF7043; /* Цвет ошибки - яркий оранжевый для контраста */  
 }
+
+
+
+
+
+
 
 /*========== base styles ==========*/
 

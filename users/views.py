@@ -8,15 +8,6 @@ from .models import  User , Topic
 from rooms.models import Room
 from .forms import  UserForm, MyUserCreationForm
 
-# Create your views here.
-
-# rooms = [
-#     {'id': 1, 'name': 'Lets learn python!'},
-#     {'id': 2, 'name': 'Design with me'},
-#     {'id': 3, 'name': 'Frontend developers'},
-# ]
-
-
 def loginPage(request):
     page = 'login'
     if request.user.is_authenticated:
