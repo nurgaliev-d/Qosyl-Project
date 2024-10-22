@@ -15,7 +15,9 @@ export class ApiService {
   getOrganizations(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/organizations/`);
   }
-
+  getOrganization(id: number): Observable<any[]>{
+    return this.http.get<any[]>(`${this.baseUrl}/organizations/${id}/`)
+  }
   getProducts(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/products/`);
   }

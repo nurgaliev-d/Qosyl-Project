@@ -9,13 +9,12 @@
           <p>{{ organization.description }}</p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button>View Details</button>
+          <button mat-button [routerLink]="[organization.id]">View Details</button>
         </mat-card-actions>
       </mat-card>
     </div>
   </div>
-  
+
   <div *ngIf="!organizations.length">
     No organizations available.
   </div>
-  

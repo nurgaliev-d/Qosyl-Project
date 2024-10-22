@@ -8,6 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import {SinglePublicationComponent} from "./components/single-publication/single-publication.component";
 import {CommentsComponent} from "./components/comments/comments.component";
+import {SingleOrganizationComponent} from "./components/single-organization/single-organization.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'profile/:user_id', component: ProfileComponent },
   { path: 'publications', component: PublicationsComponent },
   { path: 'publications/:id', component: SinglePublicationComponent},
+  { path: 'organizations/:id', component: SingleOrganizationComponent},
   { path: 'comments/:publication',component: CommentsComponent},
   { path: '', redirectTo: '/publications', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent }

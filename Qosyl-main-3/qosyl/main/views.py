@@ -1,3 +1,5 @@
+from urllib import request
+
 from rest_framework import status, generics
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -85,20 +87,14 @@ def get_comments(request, publication):
   serializer = CommentSerializer(comment,many=True, context={'request':request})
   return Response(serializer.data)
 
-# def get_publication(request, pk):
-#   publication = get_object_or_404(Publication, pk=pk)
-#   comments = Comment.objects.filter(publication=publication)
-#   comment_form = CommentForm(request.POST)
-#   if request.method == 'POST':
-#     if comment_form.is_valid():
-#       comment = comment_form.save(commit=False)
-#       comment.post = publication
-#       comment.author = request.user
-#       comment.save()
-#       return redirect('src/app/components/single-publication/single-publication.component.html', pk=publication.pk)
-#   return render(request, 'single-publication/single-publication.component.html',
-#                 {'publication': publication, 'comments': comments, 'comment_form': comment_form})
 
+
+
+@api_view(['GET'])
+def get_organization(request,pk):
+  organization = get_object_or_404(Organization, pk=pk)
+  serializer = OrganizationSerializer(organization)
+  return Response(serializer.data)
 
 @api_view(['PUT'])
 def update_publication(request, pk):

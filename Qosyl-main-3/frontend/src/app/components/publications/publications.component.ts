@@ -9,9 +9,7 @@ import {RouterLink} from "@angular/router";
   styleUrls: ['./publications.component.css']
 })
 export class PublicationsComponent implements OnInit {
-likePublication(arg0: any) {
-throw new Error('Method not implemented.');
-}
+
   publications: any[] = [];
   id: any;
   constructor(private apiService: ApiService) {}
@@ -35,6 +33,7 @@ throw new Error('Method not implemented.');
   }
 
 
-
-
+  likPublication(id: number) {
+    this.apiService.likePublication(id)
+  }
 }

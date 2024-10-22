@@ -3,6 +3,7 @@ from .views import *
 
 urlpatterns = [
     path('organizations/', organization_list, name='organization-list'),
+    path('organizations/<int:pk>/',get_organization, name='get-organization'),
     path('products/', product_list, name='product-list'),
     path('user-profiles/', user_profile_list, name='user-profile-list'),
     path('profile/', current_user_profile, name='current-user-profile'),

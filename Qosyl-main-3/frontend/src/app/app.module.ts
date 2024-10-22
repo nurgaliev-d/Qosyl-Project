@@ -22,6 +22,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SinglePublicationComponent } from './components/single-publication/single-publication.component';
 import { CommentsComponent } from './components/comments/comments.component';
 
+import { SingleOrganizationComponent } from './components/single-organization/single-organization.component';
+
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
@@ -38,6 +40,7 @@ export function tokenGetter() {
         NotFoundComponent,
         SinglePublicationComponent,
         CommentsComponent,
+        SingleOrganizationComponent,
     ],
     bootstrap: [AppComponent], imports: [JwtModule.forRoot({
             config: {

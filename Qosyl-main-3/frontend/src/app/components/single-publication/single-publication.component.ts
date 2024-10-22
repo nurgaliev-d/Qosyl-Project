@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from "../services/services/api.service";
-import {Publication} from "../../publication";
-import {Comment} from "../../comment";
+
 import {ActivatedRoute} from "@angular/router";
-import {observable} from "rxjs";
+
 
 
 @Component({
