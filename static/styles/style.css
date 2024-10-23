@@ -1,17 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
 
-:root {  
-  --color-main: #8BC34A; /* Зеленый лайм (основной цвет) */
-  --color-main-light: #FFD54F; /* Светлый желтый (вторичный цвет) */ 
-  --color-dark: #4CAF50; /* Традиционный зеленый (темный цвет) */
-  --color-dark-medium: #FFEB3B; /* Яркий желтый (средний темный цвет) */  
-  --color-dark-light: #E6EE9C; /* Светло-зеленый (светлый темный цвет) */
-  --color-light: #FFFFFF; /* Белый (светлый цвет для фона) */ 
-  --color-gray: #B0BEC5; /* Серый цвет */
-  --color-light-gray: #CFD8DC; /* Более светлый серый цвет */ 
-  --color-bg: #F9FBE7; /* Светло-желтый (цвет фона) */
-  --color-success: #5dd693; /* Цвет успеха */  
-  --color-error: #fc4b0b; /* Цвет ошибки */
+:root {
+  --color-main: #71c6dd;
+  --color-main-light: #e1f6fb;
+  --color-dark: #3f4156;
+  --color-dark-medium: #51546e;
+  --color-dark-light: #696d97;
+  --color-light: #e5e5e5;
+  --color-gray: #8b8b8b;
+  --color-light-gray: #b2bdbd;
+  --color-bg: #2d2d39;
+  --color-success: #5dd693;
+  --color-error: #fc4b0b;
 }
 
 /*========== base styles ==========*/
