@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'users',
     'rooms',
     'chat',
+    
     'rest_framework',
     'corsheaders',
 ]
