@@ -36,6 +36,7 @@ class User(AbstractUser):
 
     objects = UserManager()
     
+    
 class Topic(models.Model):
     name = models.CharField(max_length=200)
 
