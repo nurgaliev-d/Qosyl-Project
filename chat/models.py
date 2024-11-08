@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from rooms.models import Room
 from django.conf import settings 
 
+
 class Message(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
