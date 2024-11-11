@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'users',
     'rooms',
     'chat',
+    
     'rest_framework',
     'corsheaders',
 ]
@@ -78,7 +79,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'templates',  # Путь к основным шаблонам
+            BASE_DIR / 'templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
