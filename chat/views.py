@@ -23,7 +23,9 @@ def deleteMessage(request, pk):
     if request.user != message.user:
         return HttpResponse('Your are not allowed here!!')
 
+
     if request.method == 'POST':
         message.delete()
         return redirect('home')
     return render(request, 'base/delete.html', {'obj': message})
+
