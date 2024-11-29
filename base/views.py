@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -26,6 +26,17 @@ def home(request):
                'room_count': room_count, 'room_messages': room_messages}
     return render(request, 'base/home.html', context)
 
+@login_required
+def room_delete(request, pk):
+    room = get_object_or_404(Room, pk=pk)
+    if request.user == room.host:
+        room.delete()
+        room.topic.delete()
+    return redirect('home')
+
+
+def room_stars(request,pk,int):
+    room = get_object_or_404(Room,pk=pk)
 
 def activityPage(request):
     room_messages = Message.objects.all()

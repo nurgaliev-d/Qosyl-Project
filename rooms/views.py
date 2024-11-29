@@ -72,7 +72,8 @@ def deleteRoom(request, pk):
     if request.user != room.host:
         return HttpResponse('Your are not allowed here!!')
 
-    if request.method == 'POST':
+    if request.user == room.host:
         room.delete()
+        room.topic.delete()
         return redirect('home')
-    return render(request, 'rooms/delete.html', {'obj': room})
+    return redirect('home')

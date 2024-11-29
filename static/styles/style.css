@@ -699,7 +699,7 @@ a {
   padding-top: 1rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: stretch;
 }
 
 .roomListRoom__joined {
@@ -725,6 +725,22 @@ a {
   font-size: 1.3rem;
 }
 
+.roomListRoom__Delete {
+  padding: 5px 1.5rem;
+  background-color: var(--color-dark-medium);
+  border-radius: 5rem;
+  font-weight: 500;
+  font-size: 1.3rem;
+}
+
+.roomListRoom__Star {
+  padding: 5px 1.5rem;
+  background-color: var(--color-dark-medium);
+  border-radius: 5rem;
+
+  font-weight: 500;
+  font-size: 1.3rem;
+}
 /*==============================
 =>  Activities
 ================================*/

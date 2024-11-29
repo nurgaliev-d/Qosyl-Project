@@ -695,12 +695,12 @@ a {
   color: var(--color-main);
 }
 
-.roomListRoom__meta {
+.roomListRoom__meta{
   border-top: 1px solid var(--color-dark-medium);
   padding-top: 1rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: stretch;
 }
 
 .roomListRoom__joined {
