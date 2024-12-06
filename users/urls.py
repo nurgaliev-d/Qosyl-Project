@@ -12,4 +12,7 @@ urlpatterns = [
     path('update-user/', views.updateUser, name="update-user"),
     path('topics/', views.topicsPage, name="topics"),
     path('all/', views.get_all_users, name='all_users'),
+    path('friends/', views.friends_view, name='friends'),
+    path('profile/<str:username>/', views.userProfile, name='profile'),
+    path('add_friend/<str:username>/', views.add_friend_view, name='add_friend'),
 ]

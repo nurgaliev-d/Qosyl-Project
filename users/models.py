@@ -30,11 +30,28 @@ class User(AbstractUser):
     email = models.EmailField(unique=True, null=True)
     bio = models.TextField(null=True)
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
+    friends = models.ManyToManyField('self', blank=True, symmetrical=True, related_name='user_friends')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+    
+    def add_friend(self, friend):
+        """Adds a friend to the user's friends list."""
+        if friend != self and not self.friends.filter(id=friend.id).exists():
+            self.friends.add(friend)
+
+    def remove_friend(self, friend):
+        """Removes a friend from the user's friends list."""
+        if self.friends.filter(id=friend.id).exists():
+            self.friends.remove(friend)
+
+    def is_friend(self, friend):
+        """Checks if the user is friends with another user."""
+        return self.friends.filter(id=friend.id).exists()
+
 
     objects = UserManager()
+
     
 class Topic(models.Model):
     name = models.CharField(max_length=200)
