@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-# from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -96,3 +96,40 @@ def get_user_avatar(user):
         return user.avatar.url
     else:
         return '/static/images/default-avatar.jpg'
+    
+@login_required
+def add_friend(request, user_id):
+    friend = get_object_or_404(User, id=user_id)
+    request.user.add_friend(friend)
+    return HttpResponse(f"Added {friend.email} as a friend!")
+
+@login_required
+def remove_friend(request, user_id):
+    friend = get_object_or_404(User, id=user_id)
+    request.user.remove_friend(friend)
+    return HttpResponse(f"Removed {friend.email} from your friends list!")
+
+@login_required
+def friends_view(request):
+    user = request.user
+    friends = user.friends.all()  # Assuming the friends relation is set up in the model
+    return render(request, 'users/friends.html', {'friends': friends})
+
+def profile_view(request, username):
+    print(f"Fetching profile for username: {username}")
+    profile_user = get_object_or_404(User, username=username)
+    is_friend = profile_user in request.user.friends.all()
+    return render(request, 'users/profile.html', {
+        'user': profile_user,
+        'is_friend': is_friend,
+    })
+    
+@login_required
+def add_friend_view(request, username):
+    profile_user = get_object_or_404(User, username=username)
+    if profile_user != request.user and profile_user not in request.user.friends.all():
+        request.user.friends.add(profile_user)
+        messages.success(request, f"You are now friends with {profile_user.username}!")
+    else:
+        messages.warning(request, "You are already friends or cannot add this user.")
+    return redirect('profile', username=username)

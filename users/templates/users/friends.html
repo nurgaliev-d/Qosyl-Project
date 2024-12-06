@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+{% block content %}
+<main class="friends-page layout">
+  <div class="container">
+    <h1>Friends of {{ user.username }}</h1>
+    <ul>
+      {% for friend in friends %}
+        <li>
+          <a href="{% url 'profile' friend.username %}">
+            {{ friend.username }}
+          </a>
+        </li>
+      {% empty %}
+        <p>No friends found.</p>
+      {% endfor %}
+    </ul>
+  </div>
+</main>
+{% endblock content %}
