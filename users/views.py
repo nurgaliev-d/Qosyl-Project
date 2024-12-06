@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from .models import  User , Topic
 from rooms.models import Room
 from .forms import  UserForm, MyUserCreationForm
+from django.http import JsonResponse
 
 def loginPage(request):
     page = 'login'
@@ -82,3 +83,16 @@ def topicsPage(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     topics = Topic.objects.filter(name__icontains=q)
     return render(request, 'users/topics.html', {'topics': topics})
+
+@login_required
+def get_all_users(request):
+    users = User.objects.all()
+    for user in users:
+        user.avatar_url = user.avatar.url if user.avatar else '/static/images/default-avatar.jpg'
+    return render(request, 'users/all_users.html', {'users': users})
+
+def get_user_avatar(user):
+    if user.avatar:
+        return user.avatar.url
+    else:
+        return '/static/images/default-avatar.jpg'

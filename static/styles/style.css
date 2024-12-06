@@ -10,8 +10,7 @@
   --color-gray: #8b8b8b;
   --color-light-gray: #b2bdbd;
   --color-bg: #02314d;
-  --color-success: #5dd693;
-  --color-error: #fc4b0b;
+
 }
 
 /*========== base styles ==========*/
@@ -604,7 +603,7 @@ a {
   border-bottom: 1px solid var(--color-dark-medium);
 }
 
-.topics-page .header__search{
+.topics-page .header__search {
   display: block;
 }
 
