@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from rooms.models import Room 
+from rooms.models import Room, Rating
 from chat.models import Message
 from users.models import  Topic 
 from django.http import HttpResponse
@@ -10,6 +10,8 @@ def room(request, pk):
     room = Room.objects.get(id=pk)
     room_messages = room.message_set.all()
     participants = room.participants.all()
+    rating = Rating.objects.filter(room=room,user=request.user).first()
+    room.user_rating = rating.rating if rating else 0
 
     if request.method == 'POST':
         message = Message.objects.create(
@@ -76,4 +78,10 @@ def deleteRoom(request, pk):
         room.delete()
         room.topic.delete()
         return redirect('home')
+    return redirect('home')
+
+def rateRoom(request, pk, rating:int):
+    room = Room.objects.get(id=pk)
+    Rating.objects.filter(room=room, user=request.user).delete()
+    room.rating_set.create(user=request.user, rating=rating)
     return redirect('home')

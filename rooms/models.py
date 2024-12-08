@@ -1,6 +1,9 @@
 from django.db import models
 
-from django.conf import settings 
+from django.conf import settings
+from django.db.models import Avg
+
+
 # C:\Users\Lenovo\Desktop\мидкаджанго\Qosyl\rooms\models.py
 
 class Room(models.Model):
@@ -15,5 +18,17 @@ class Room(models.Model):
     class Meta:
         ordering = ['-updated', '-created']
 
+    def average_rating(self):
+        return Rating.objects.filter(room=self).aggregate(Avg('rating'))['rating__avg'] or 0
+
+
     def __str__(self):
-        return self.name
+        return f'{self.name}: {self.average_rating()}'
+
+class Rating(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    rating = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f'{self.room.name}: {self.rating}'

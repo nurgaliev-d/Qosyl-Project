@@ -1,5 +1,13 @@
 {% for room in rooms %}
 {% load static %}
+<html>
+    <head>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel ="stylesheet" href = "{% static 'styles/style.css' %}">
+        <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="{% static 'js/script.js' %}" defer></script>
+    </head>
 <div class="roomListRoom">
     <div class="roomListRoom__header">
         <a href="{% url 'user-profile' room.host.id %}" class="roomListRoom__author">
@@ -41,26 +49,40 @@
             {{room.participants.all.count}} Joined
         </a>
         <p class="roomListRoom__topic">{{room.topic.name}}</p>
-         <form method="POST" action="{% url 'room_delete' room.pk %}">
-            {% csrf_token %}
-                <button class="roomListRoom__Delete" type="submit" ><img src ="{% static 'images/icons/star.svg' %}" alt="star"></button>
-         </form>
-         <form method="POST" action="{% url 'room_delete' room.pk %}">
-            {% csrf_token %}
-                <button class="roomListRoom__Delete" type="submit" ><img src ="{% static 'images/icons/star.svg' %}" alt="star"></button>
-         </form>
-         <form method="POST" action="{% url 'room_delete' room.pk %}">
-            {% csrf_token %}
-                <button class="roomListRoom__Delete" type="submit" ><img src ="{% static 'images/icons/star.svg' %}" alt="star"></button>
-         </form>
-         <form method="POST" action="{% url 'room_delete' room.pk %}">
-            {% csrf_token %}
-                <button class="roomListRoom__Delete" type="submit" ><img src ="{% static 'images/icons/star.svg' %}" alt="star"></button>
-         </form>
-         <form method="POST" action="{% url 'room_delete' room.pk %}">
-            {% csrf_token %}
-                <button class="roomListRoom__Delete" type="submit" ><img src ="{% static 'images/icons/star.svg' %}" alt="star"></button>
-         </form>
+        <h5 class="avg_rat">Avg rating:
+            <span class="fa fa-star {% if room.average_rating > 0 %} checked {% endif %}"></span>
+            <span class="fa fa-star {% if room.average_rating > 1 %} checked {% endif %}"></span>
+            <span class="fa fa-star {% if room.average_rating > 2 %} checked {% endif %}"></span>
+            <span class="fa fa-star {% if room.average_rating > 3 %} checked {% endif %}" ></span>
+            <span class="fa fa-star {% if room.average_rating > 4 %} checked {% endif %}"></span>
+        </h5>
+        {% if request.user.is_authenticated %}
+        <div class="btn btn-light item_left list-inline rating-list">
+             <li onclick="rate(5, {{ room.id }})">
+                  <i class="fa fa-star {% if room.user_rating > 4 %} checked {% endif %}" title="Rate 5"></i></li>
+              <li onclick="rate(4, {{ room.id }})">
+                  <i class="fa fa-star {% if room.user_rating > 3 %} checked {% endif %}" title="Rate 4"></i></li>
+              <li onclick="rate(3, {{ room.id }})">
+                  <i class="fa fa-star {% if room.user_rating > 2 %} checked {% endif %}" title="Rate 3"></i></li>
+              <li onclick="rate(2, {{ room.id }})">
+                  <i class="fa fa-star {% if room.user_rating > 1 %} checked {% endif %}" title="Rate 2"></i></li>
+              <li onclick="rate(1, {{ room.id }})">
+                  <i class="fa fa-star {% if room.user_rating > 0 %} checked {% endif %}" title="Rate 1"></i></li>
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endfor %}
+<script>
+        const rate = (rating, room_id) => {
+            fetch(`/rate/${room_id}/${rating}/`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(rest => {
+                window.location.reload();
+            })
+        }
+    </script>
+</html>

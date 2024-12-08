@@ -699,7 +699,8 @@ a {
   padding-top: 1rem;
   display: flex;
   align-items: center;
-  justify-content: stretch;
+  justify-content: space-between;
+  flex-direction: row;
 }
 
 .roomListRoom__joined {
@@ -718,7 +719,7 @@ a {
 }
 
 .roomListRoom__topic {
-  padding: 5px 1.5rem;
+  padding: 5px 1.5rem 5px 15px ;
   background-color: var(--color-dark-medium);
   border-radius: 5rem;
   font-weight: 500;
@@ -733,14 +734,42 @@ a {
   font-size: 1.3rem;
 }
 
-.roomListRoom__Star {
-  padding: 5px 1.5rem;
-  background-color: var(--color-dark-medium);
-  border-radius: 5rem;
-
-  font-weight: 500;
-  font-size: 1.3rem;
+.item_left{
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
 }
+
+.buttonStar {
+ border: 0;
+  background: transparent;
+}
+
+.rating-list li {
+          float: right;
+          color: #ddd;
+          padding: 10px 5px;
+        }
+
+
+.rating-list li:hover,
+.rating-list li:hover ~ li {
+          color: gold;
+}
+
+.rating-list {
+          display: inline-block;
+          list-style: none;
+}
+
+.checked{
+  color:gold;
+}
+.avg_rat{
+  padding-left: 10px;
+
+}
+
 /*==============================
 =>  Activities
 ================================*/
