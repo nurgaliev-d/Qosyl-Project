@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
-from .models import  User , Topic
+from .models import  User , Topic, FriendRequest
 from rooms.models import Room
 from .forms import  UserForm, MyUserCreationForm
 from django.http import JsonResponse
@@ -61,9 +61,28 @@ def userProfile(request, pk):
     rooms = user.room_set.all()
     room_messages = user.message_set.all()
     topics = Topic.objects.all()
-    context = {'user': user, 'rooms': rooms,
-               'room_messages': room_messages, 'topics': topics}
-    return render(request, 'users/profile.html', context)
+    profile_user = get_object_or_404(User, id=pk)
+    
+    # Check if this is the logged-in user's profile
+    is_own_profile = request.user == profile_user
+    
+    # Check if they are already friends
+    is_friend = profile_user.is_friend(request.user)
+    
+    # Check if a friend request has already been sent
+    existing_request = FriendRequest.objects.filter(from_user=request.user, to_user=profile_user).exists()
+
+    context = {
+        "user": profile_user,
+        "is_own_profile": is_own_profile,
+        "is_friend": is_friend,
+        "existing_request": existing_request,
+        'user': user, 
+        'rooms': rooms,
+        'room_messages': room_messages, 
+        'topics': topics
+    }
+    return render(request, "users/profile.html", context)
 
 
 @login_required(login_url='login')
@@ -98,16 +117,18 @@ def get_user_avatar(user):
         return '/static/images/default-avatar.jpg'
     
 @login_required
-def add_friend(request, user_id):
-    friend = get_object_or_404(User, id=user_id)
-    request.user.add_friend(friend)
-    return HttpResponse(f"Added {friend.email} as a friend!")
+def send_friend_request(request, user_id):
+    to_user = get_object_or_404(User, id=user_id)
+    if request.user != to_user and not request.user.is_friend(to_user):
+        FriendRequest.objects.create(from_user=request.user, to_user=to_user)
+    return redirect("profile", user_id=user_id)
 
 @login_required
 def remove_friend(request, user_id):
-    friend = get_object_or_404(User, id=user_id)
-    request.user.remove_friend(friend)
-    return HttpResponse(f"Removed {friend.email} from your friends list!")
+    user = get_object_or_404(User, id=user_id)
+    if request.user.is_friend(user):
+        request.user.remove_friend(user)
+    return redirect("profile", user_id=user_id)
 
 @login_required
 def friends_view(request):

@@ -30,7 +30,7 @@ class User(AbstractUser):
     email = models.EmailField(unique=True, null=True)
     bio = models.TextField(null=True)
 
-    avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
+    avatar = models.ImageField(upload_to='avatars/', default='avatar.svg')
     friends = models.ManyToManyField('self', blank=True, symmetrical=True, related_name='user_friends')
 
 
@@ -60,5 +60,27 @@ class Topic(models.Model):
 
     def __str__(self):
         return self.name
+    
+class FriendRequest(models.Model):
+    from_user = models.ForeignKey(User, related_name='sent_requests', on_delete=models.CASCADE)
+    to_user = models.ForeignKey(User, related_name='received_requests', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
 
+    def accept(self):
+        """Accept the friend request."""
+        self.from_user.add_friend(self.to_user)
+        self.to_user.add_friend(self.from_user)
+        self.delete()
 
+    def decline(self):
+        """Decline the friend request."""
+        self.delete()
+
+    def __str__(self):
+        return f"{self.from_user} → {self.to_user}"
+
+    def save(self, *args, **kwargs):
+        # Prevent a user from sending a friend request to themselves
+        if self.from_user == self.to_user:
+            raise ValueError("You cannot send a friend request to yourself.")
+        super().save(*args, **kwargs)
