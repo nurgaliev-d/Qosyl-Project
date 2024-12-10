@@ -45,10 +45,40 @@ Follow the steps below to set up and run the Qosyl Project locally.
 
 ### 1. Clone the Repository
 Clone the repository and navigate into the project folder:
-```bash
-git clone https://github.com/nurgaliev-d/Qosyl-Project.git
-cd Qosyl-Project
+`git clone https://github.com/nurgaliev-d/Qosyl-Project.git
+cd Qosyl-Project`
 
+### 2. Set Up a Virtual Environment
+Create and activate a virtual environment:
+`python -m venv venv`
+Activate the virtual environment:
+
+Linux/macOS:
+`source venv/bin/activate`
+Windows:
+`venv\Scripts\activate`
+
+### 3. Install Dependencies
+Install the required Python packages:
+`pip install -r requirements.txt`
+
+
+
+### Database Setup
+1. Apply Migrations
+Set up the database schema:
+`python manage.py migrate`
+
+2. Create a Superuser
+Create an admin user to access the Django admin interface:
+`python manage.py createsuperuser`
+
+### Running the Project
+Start the Django development server:
+`python manage.py runserver`
+
+Access the application in your web browser at:
+`http://127.0.0.1:8000/`
 
 # App Source
 
