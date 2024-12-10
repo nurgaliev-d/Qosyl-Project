@@ -8,34 +8,47 @@ Purpose of this Django project is to create a social platform where users can jo
 
 
 # Table of Contents
-1. [Technical Topics](#topics)
-2. [App Source](#app-source)
-3. [Basic information about App](#app-description)
-4. [Project preview](#project-preview)
-5. [Project members](#project-members)
-6. [Project Technical Topics that Containing Now](#used-topics-at-this-time)
 
+1. [Prerequisites](#prerequisites)
+2. [Installation](#installation)
+3. [App Source](#app-source)
+4. [Basic information about App](#app-description)
+5. [Project preview](#project-preview)
+6. [Project members](#project-members)
+7. [Project Technical Topics that Containing Now](#used-topics-at-this-time)
 
-# Topics
-| Technical Side |
-|------------|
-| Api   | 
-|  | 
-|   | 
-|  | 
-| | 
-|  | 
+# Prerequisites
+Before you can run this project, make sure your system meets the following requirements:
 
+1. **Python**:
+   - Version: 3.8 or higher
+   - [Download Python](https://www.python.org/downloads/)
+2. **Pip**:
+   - Installed alongside Python for managing Python packages.
+3. **Virtual Environment (Optional but recommended)**:
+   - Install `venv` or any virtual environment manager like `virtualenv`.
+4. **Git**:
+   - Version control system to clone the repository.
+   - [Download Git](https://git-scm.com/)
+5. **SQLite**:
+   - Pre-installed with Python. Used as the default database for development.
+
+---
+# Installation
+Steps
+Clone the repository:
+git clone https://github.com/yourusername/oyla-platform.git
+cd oyla-platform
 
 # App Source
 
 
 | Navigation | Description |
 |------------|-------------|
-|  Rooms     | Explore, chat, collaborate, create, update, delete, organize, authenticate|
-|  Chat      | Messaging, moderation, restricts actions like deleting messages to authenticated users.|
+| Rooms     | Explore, chat, collaborate, create, update, delete, organize, authenticate|
+| Chat      | Messaging, moderation, restricts actions like deleting messages to authenticated users.|
 | Qosyl(main)| Integrates multiple apps   |
-|  Base      | Search, overview, activity feed|
+| Base      | Search, overview, activity feed|
 | Users      | Profiles(view, update, and manage their profiles), networking, insights|
 
 
@@ -76,6 +89,20 @@ Build a network of friends and interact with them through profiles and shared ac
 
 ......Place for photo of project(by parts).....
 ![Снимок экрана (48)](https://github.com/user-attachments/assets/b0128649-cbae-4726-9987-9ea1c728e2ae)
+![Снимок экрана (38)](https://github.com/user-attachments/assets/65497e9a-9264-4bde-afb5-83881955ff6a)
+![Снимок экрана (39)](https://github.com/user-attachments/assets/bbbd857d-e917-46fb-854b-dd604b265374)
+![Снимок экрана (40)](https://github.com/user-attachments/assets/f6e52556-9d7b-4b6d-ac0d-29a8f7ebcbb7)
+![Снимок экрана (41)](https://github.com/user-attachments/assets/9cb7efd8-2d8b-4997-8114-f53c93cd69ad)
+![Снимок экрана (42)](https://github.com/user-attachments/assets/845f2ae1-8756-4ec1-9f96-979e65f57c84)
+![Снимок экрана (43)](https://github.com/user-attachments/assets/5b738c8a-7ab4-48ed-b059-9cd95424a048)
+![Снимок экрана (44)](https://github.com/user-attachments/assets/f54998fa-ca63-4ed6-a040-72f27fc1e2d2)
+![Снимок экрана (45)](https://github.com/user-attachments/assets/3854014b-1d75-4f6a-87c8-0c716367a060)
+![Снимок экрана (46)](https://github.com/user-attachments/assets/7f13b5c8-0b04-47fe-adf8-385cd6c2f980)
+![Снимок экрана (47)](https://github.com/user-attachments/assets/26636b62-321c-4ad3-a14a-7c8fe33a664c)
+
+
+
+
 
 
 
@@ -108,6 +135,11 @@ Build a network of friends and interact with them through profiles and shared ac
 | DRF  |    ✓   |
 | Session Management & Authentication  |    ✓   |
 | Database |  ✓   |
+| API  |   ✓   |
+| Session Management & Authentication   |   ✓   |
+| Analytical Component  |    ✓   |
+| Logging  |    ✓   |
+| Testing |  ✓   |
 
 
 
