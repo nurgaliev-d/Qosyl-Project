@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
-from .models import  User , Topic, FriendRequest
+from .models import  User , Topic, FriendRequest, Friendship
 from rooms.models import Room
 from .forms import  UserForm, MyUserCreationForm
 from django.http import JsonResponse
@@ -116,25 +116,28 @@ def get_user_avatar(user):
     else:
         return '/static/images/default-avatar.jpg'
     
-@login_required
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import User, FriendRequest
+
 def send_friend_request(request, user_id):
     to_user = get_object_or_404(User, id=user_id)
     if request.user != to_user and not request.user.is_friend(to_user):
+        # Create a new friend request
         FriendRequest.objects.create(from_user=request.user, to_user=to_user)
-    return redirect("profile", user_id=user_id)
-
-@login_required
-def remove_friend(request, user_id):
-    user = get_object_or_404(User, id=user_id)
-    if request.user.is_friend(user):
-        request.user.remove_friend(user)
-    return redirect("profile", user_id=user_id)
+    return redirect("friends")
 
 @login_required
 def friends_view(request):
-    user = request.user
-    friends = user.friends.all()  # Assuming the friends relation is set up in the model
-    return render(request, 'users/friends.html', {'friends': friends})
+    users = User.objects.all()
+    friend_requests_sent = {
+        user.id: FriendRequest.objects.filter(from_user=request.user, to_user=user).exists()
+        for user in users
+    }
+
+    return render(request, 'users/friends.html', {
+        'users': users,
+        'friend_requests_sent': friend_requests_sent,
+    })
 
 def profile_view(request, username):
     print(f"Fetching profile for username: {username}")
@@ -154,3 +157,47 @@ def add_friend_view(request, username):
     else:
         messages.warning(request, "You are already friends or cannot add this user.")
     return redirect('profile', username=username)
+
+@login_required
+def approve_friend_request(request, request_id):
+    # Get the friend request object
+    friend_request = get_object_or_404(FriendRequest, id=request_id)
+
+    # Ensure the request is for the currently logged-in user and the sender is different
+    if friend_request.to_user == request.user:
+        # Add the users to each other's friend list
+        request.user.friends.add(friend_request.from_user)
+        friend_request.from_user.friends.add(request.user)
+
+        # Remove the request from the database
+        friend_request.delete()
+
+        # Redirect back to the profile or friends list page
+        return redirect('friends')
+
+    # If the request is not for the logged-in user, redirect to home or an error page
+    return redirect('home')
+
+# View to reject a friend request
+@login_required
+def reject_friend_request(request, request_id):
+    friend_request = get_object_or_404(FriendRequest, id=request_id)
+
+    # Check if the logged-in user is the recipient of the request
+    if request.user == friend_request.to_user:
+        friend_request.delete()
+
+    return redirect('friends')
+
+
+
+# View to remove a friend
+@login_required
+def remove_friend(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    if request.user.is_friend(user):
+        request.user.remove_friend(user)
+        messages.success(request, f"{user.username} has been removed from your friends list.")
+    else:
+        messages.warning(request, f"You are not friends with {user.username}.")
+    return redirect('friends_view')
