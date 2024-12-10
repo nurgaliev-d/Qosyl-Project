@@ -35,8 +35,6 @@ Before you can run this project, make sure your system meets the following requi
 
 ---
 # Installation
-# Installation Guide for Qosyl Project
-
 Follow the steps below to set up and run the Qosyl Project locally.
 
 ---
