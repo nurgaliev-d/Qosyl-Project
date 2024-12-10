@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
-from .models import  User , Topic
+from .models import User, Topic, MyChats
 from rooms.models import Room
 from .forms import  UserForm, MyUserCreationForm
 from django.http import JsonResponse
@@ -96,3 +96,6 @@ def get_user_avatar(user):
         return user.avatar.url
     else:
         return '/static/images/default-avatar.jpg'
+
+
+

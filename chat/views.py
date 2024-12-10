@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
+
+from users.models import User, MyChats
 from .models import  Message
 
 
@@ -29,3 +31,15 @@ def deleteMessage(request, pk):
         return redirect('home')
     return render(request, 'base/delete.html', {'obj': message})
 
+@login_required
+def index(request):
+    frnd_name = request.GET.get('user', None)
+    mychats_data = None
+    if frnd_name:
+        if User.objects.filter(username=frnd_name).exists() and MyChats.objects.filter(me=request.user,
+                                                                                       frnd=User.objects.get(
+                                                                                               username=frnd_name)):
+            frnd_ = User.objects.get(username=frnd_name)
+            mychats_data = MyChats.objects.get(me=request.user, frnd=frnd_)
+    frnds = User.objects.exclude(id=request.user.id)
+    return render(request, 'chat/index.html', {'my': mychats_data, 'chats': mychats_data, 'frnds': frnds})

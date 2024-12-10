@@ -1,7 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.shortcuts import render
+
 from rooms.models import Room
-from django.conf import settings 
+from django.conf import settings
+
 
 
 class Message(models.Model):
@@ -16,3 +19,6 @@ class Message(models.Model):
 
     def __str__(self):
         return self.body[0:50]
+
+
+

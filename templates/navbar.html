@@ -37,6 +37,26 @@
     <i class="fas fa-users"></i> All Users
 </button>
 
+<button
+    onclick="window.location.href='{% url 'chat' %}'"
+    class="all-users-button"
+    style="
+        background-color: #71c6dd; /* Using your color for the main button background */
+        color: #3f4156; /* Text color */
+        font-family: 'DM Sans', sans-serif; /* Font style */
+        font-size: 16px; /* Font size */
+        padding: 12px 20px; /* Padding for spacing */
+        border: none; /* No border */
+        border-radius: 8px; /* Rounded corners */
+        cursor: pointer; /* Pointer on hover */
+        display: flex;
+        align-items: center;
+        gap: 8px; /* Space between the icon and the text */
+        transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+    ">
+    <i class="fas fa-users"></i> Chat
+</button>
+
         
         <nav class="header__menu">
 
