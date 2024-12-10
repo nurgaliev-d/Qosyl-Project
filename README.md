@@ -35,10 +35,20 @@ Before you can run this project, make sure your system meets the following requi
 
 ---
 # Installation
-Steps
-Clone the repository:
-git clone https://github.com/yourusername/oyla-platform.git
-cd oyla-platform
+# Installation Guide for Qosyl Project
+
+Follow the steps below to set up and run the Qosyl Project locally.
+
+---
+
+## Installation Steps
+
+### 1. Clone the Repository
+Clone the repository and navigate into the project folder:
+```bash
+git clone https://github.com/nurgaliev-d/Qosyl-Project.git
+cd Qosyl-Project
+
 
 # App Source
 
