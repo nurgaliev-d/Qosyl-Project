@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 # C:\Users\Lenovo\Desktop\мидкаджанго\Qosyl\users\models.py
 
@@ -84,3 +85,14 @@ class FriendRequest(models.Model):
         if self.from_user == self.to_user:
             raise ValueError("You cannot send a friend request to yourself.")
         super().save(*args, **kwargs)
+
+
+class ActivityLog(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateField(default=timezone.now)
+    hours_spent = models.FloatField()  # The number of hours spent in a day
+
+    def __str__(self):
+        return f"{self.user.name} - {self.date} - {self.hours_spent} hours"
+    
+    

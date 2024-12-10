@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'users',
     'rooms',
     'chat',
+    'chartjs',
     
     'rest_framework',
     'corsheaders',

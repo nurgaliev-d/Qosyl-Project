@@ -8,6 +8,9 @@ from .models import  User , Topic, FriendRequest
 from rooms.models import Room
 from .forms import  UserForm, MyUserCreationForm
 from django.http import JsonResponse
+from django.db import connection
+from django.db.models import Sum
+from .models import ActivityLog
 
 def loginPage(request):
     page = 'login'
@@ -72,6 +75,13 @@ def userProfile(request, pk):
     # Check if a friend request has already been sent
     existing_request = FriendRequest.objects.filter(from_user=request.user, to_user=profile_user).exists()
 
+    # Fetch activity logs for the current user
+    activity_logs = ActivityLog.objects.filter(user=profile_user)
+    activity_data = activity_logs.values('date').annotate(total_hours=Sum('hours_spent')).order_by('date')
+    
+    dates = [log['date'].strftime('%Y-%m-%d') for log in activity_data]
+    hours = [log['total_hours'] for log in activity_data]
+
     context = {
         "user": profile_user,
         "is_own_profile": is_own_profile,
@@ -80,7 +90,9 @@ def userProfile(request, pk):
         'user': user, 
         'rooms': rooms,
         'room_messages': room_messages, 
-        'topics': topics
+        'topics': topics,
+        'dates': dates,
+        'hours': hours
     }
     return render(request, "users/profile.html", context)
 

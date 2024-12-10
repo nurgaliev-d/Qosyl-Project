@@ -1163,3 +1163,28 @@ a {
   color: var(--color-main);
   font-weight: 1.4rem;
 }
+
+/* Chart Section Styles */
+.chart-section {
+  margin: 40px 0;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chart-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: 600;
+  text-align: center;
+}
+
+#activityChart {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+}
