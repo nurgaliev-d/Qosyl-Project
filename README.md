@@ -1,6 +1,6 @@
 # Qosyl app
 
-# "
+# purpose of this Django project is to create a social platform where users can join rooms based on topics of interest, communicate through messages, and engage with each other through friendships and comments. Users can send and receive friend requests, participate in discussions, and track activity across rooms.
 
 The project is a simple and effective ....
 
