@@ -11,6 +11,7 @@ from django.http import JsonResponse
 from django.db import connection
 from django.db.models import Sum
 from .models import ActivityLog
+from django.core.serializers import serialize
 
 def loginPage(request):
     page = 'login'
@@ -76,11 +77,12 @@ def userProfile(request, pk):
     existing_request = FriendRequest.objects.filter(from_user=request.user, to_user=profile_user).exists()
 
     # Fetch activity logs for the current user
-    activity_logs = ActivityLog.objects.filter(user=profile_user)
-    activity_data = activity_logs.values('date').annotate(total_hours=Sum('hours_spent')).order_by('date')
+    activity_logs = ActivityLog.objects.filter(user=user).values('date', 'hours_spent')
+    activity_data = list(activity_logs)
     
+    # Ensure 'hours_spent' is used instead of 'total_hours'
     dates = [log['date'].strftime('%Y-%m-%d') for log in activity_data]
-    hours = [log['total_hours'] for log in activity_data]
+    hours = [log['hours_spent'] for log in activity_data]
 
     context = {
         "user": profile_user,
@@ -92,9 +94,11 @@ def userProfile(request, pk):
         'room_messages': room_messages, 
         'topics': topics,
         'dates': dates,
-        'hours': hours
+        'hours': hours,
+        'activity_data': activity_data,
     }
     return render(request, "users/profile.html", context)
+
 
 
 @login_required(login_url='login')
@@ -166,3 +170,18 @@ def add_friend_view(request, username):
     else:
         messages.warning(request, "You are already friends or cannot add this user.")
     return redirect('profile', username=username)
+
+
+def activity_chart(request, user_id):
+    # Fetch activity logs for the specific user, ordered by date
+    logs = ActivityLog.objects.filter(user_id=user_id).order_by('date')
+
+    # Extract dates and hours_spent to use as labels and data
+    dates = [log.date.strftime('%Y-%m-%d') for log in logs]
+    hours_spent = [log.hours_spent for log in logs]
+
+    # Return the data as JSON in a more structured format
+    return JsonResponse({
+        'labels': dates,
+        'data': hours_spent,
+    }, safe=False)

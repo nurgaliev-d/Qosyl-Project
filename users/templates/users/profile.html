@@ -12,16 +12,17 @@
       <div class="profile">
         <div class="profile__avatar">
           <div class="avatar avatar--large active">
-            <img src="{{user.avatar.url}}" />
+            <img src="{{ user.avatar.url }}" />
           </div>
         </div>
         <div class="profile__info">
-          <h3>{{user.name}}</h3>
-          <p>@{{user.username}}</p>
+          <h3>{{ user.name }}</h3>
+          <p>@{{ user.username }}</p>
 
           <div class="profile__actions">
             {% if is_own_profile %}
               <a href="{% url 'update-user' %}" class="btn btn--main btn--pill">Edit Profile</a>
+              <button id="showChartBtn" class="btn btn--secondary btn--pill">Show Chart</button>
             {% else %}
               {% if is_friend %}
                 <form action="{% url 'remove_friend' user.id %}" method="POST">
@@ -42,26 +43,122 @@
         <div class="profile__about">
           <h3>About</h3>
           <p>
-            {{user.bio}}
+            {{ user.bio }}
           </p>
         </div>
       </div>
 
       <div class="roomList__header">
         <div>
-          <h2>Study Rooms</a>
-          </h2>
+          <h2>Study Rooms</h2>
         </div>
       </div>
       {% include 'base/feed_component.html' %}
-
-
     </div>
     <!-- Room List End -->
 
-    <!-- Activities Start -->
+    <!-- Chart Container -->
+    <div id="chartContainer" class="chart-container hidden">
+      <div class="chart-wrapper">
+        <canvas id="activityChart"></canvas>
+      </div>
+    </div>
+
+
     {% include 'chat/activity_component.html' %}
-    <!-- Activities End -->
   </div>
 </main>
+
+<!-- Chart.js Script -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const chartContainer = document.getElementById("chartContainer");
+    const showChartBtn = document.getElementById("showChartBtn");
+
+    function toggleChart() {
+      chartContainer.classList.toggle("hidden");
+    }
+
+    document.addEventListener("click", function (e) {
+      if (!chartContainer.contains(e.target) && !showChartBtn.contains(e.target)) {
+        chartContainer.classList.add("hidden");
+      }
+    });
+
+    showChartBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      toggleChart();
+
+      if (!chartContainer.classList.contains("hidden") && !chartContainer.dataset.chartInitialized) {
+        const ctx = document.getElementById("activityChart").getContext("2d");
+        const activityData = JSON.parse('{{ activity_data|escapejs }}');
+        const labels = activityData.map(item => item.date);
+        const hoursSpent = activityData.map(item => item.hours_spent);
+        console.log('Labels:', labels);
+        console.log('Hours Spent:', hoursSpent);
+
+        if (labels.length > 0) {
+          new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: labels,
+              datasets: [{
+                label: 'Hours Spent',
+                data: hoursSpent,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2
+              }]
+            },
+            options: {
+              responsive: true,
+              scales: {
+                x: { title: { display: true, text: 'Date' } },
+                y: { title: { display: true, text: 'Hours Spent' }, beginAtZero: true }
+              }
+            }
+          });
+
+          chartContainer.dataset.chartInitialized = true;
+        } else {
+          alert('No data available to display the chart.');
+        }
+      }
+    });
+  });
+</script>
+
+
+<!-- Styles -->
+<style>
+  .chart-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+
+  .chart-container.hidden {
+    display: none;
+  }
+
+  .chart-wrapper {
+    width: 400px;
+    height: 300px;
+  }
+
+  .btn {
+    margin: 5px;
+  }
+</style>
 {% endblock content %}
+
+
+
+<!-- {% include 'chat/activity_component.html' %} -->
