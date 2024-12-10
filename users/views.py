@@ -9,9 +9,11 @@ from rooms.models import Room
 from .forms import  UserForm, MyUserCreationForm
 from django.http import JsonResponse
 from django.db import connection
-from django.db.models import Sum
-from .models import ActivityLog
+from django.db.models import Count
 from django.core.serializers import serialize
+from rooms.models import Room
+from chat.models import Message
+import json
 
 def loginPage(request):
     page = 'login'
@@ -76,14 +78,6 @@ def userProfile(request, pk):
     # Check if a friend request has already been sent
     existing_request = FriendRequest.objects.filter(from_user=request.user, to_user=profile_user).exists()
 
-    # Fetch activity logs for the current user
-    activity_logs = ActivityLog.objects.filter(user=user).values('date', 'hours_spent')
-    activity_data = list(activity_logs)
-    
-    # Ensure 'hours_spent' is used instead of 'total_hours'
-    dates = [log['date'].strftime('%Y-%m-%d') for log in activity_data]
-    hours = [log['hours_spent'] for log in activity_data]
-
     context = {
         "user": profile_user,
         "is_own_profile": is_own_profile,
@@ -93,9 +87,6 @@ def userProfile(request, pk):
         'rooms': rooms,
         'room_messages': room_messages, 
         'topics': topics,
-        'dates': dates,
-        'hours': hours,
-        'activity_data': activity_data,
     }
     return render(request, "users/profile.html", context)
 
@@ -172,16 +163,25 @@ def add_friend_view(request, username):
     return redirect('profile', username=username)
 
 
-def activity_chart(request, user_id):
-    # Fetch activity logs for the specific user, ordered by date
-    logs = ActivityLog.objects.filter(user_id=user_id).order_by('date')
+def analytics(request):
+    # Get the current user
+    user = request.user
+    
+    # Annotate rooms with the count of comments made by the current user
+    rooms = Room.objects.annotate(
+        num_comments=Count('comments', filter=Q(comments__user=user), distinct=True)
+    )
 
-    # Extract dates and hours_spent to use as labels and data
-    dates = [log.date.strftime('%Y-%m-%d') for log in logs]
-    hours_spent = [log.hours_spent for log in logs]
+    # Prepare data for charts
+    room_names = [room.name for room in rooms]
+    num_comments = [room.num_comments for room in rooms]
 
-    # Return the data as JSON in a more structured format
-    return JsonResponse({
-        'labels': dates,
-        'data': hours_spent,
-    }, safe=False)
+    # Pass data to the template
+    context = {
+        'user': user,
+        'is_own_profile': user == request.user,
+        'room_names': json.dumps(room_names),  # Serialize as JSON
+        'num_comments': json.dumps(num_comments),  # Serialize as JSON
+    }
+
+    return render(request, 'profile.html', context)

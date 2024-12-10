@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
+from chat.models import Message
 from django.contrib.auth.models import AbstractUser
+from rooms.models import Room
 # C:\Users\Lenovo\Desktop\мидкаджанго\Qosyl\users\models.py
 
 from django.contrib.auth.models import BaseUserManager
@@ -87,12 +89,20 @@ class FriendRequest(models.Model):
         super().save(*args, **kwargs)
 
 
-class ActivityLog(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateField(default=timezone.now)
-    hours_spent = models.FloatField()  # The number of hours spent in a day
+
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
+    room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='comments')
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['user']),
+            models.Index(fields=['room']),
+            models.Index(fields=['timestamp']),
+        ]
 
     def __str__(self):
-        return f"{self.user.name} - {self.date} - {self.hours_spent} hours"
-    
+        return f"{self.user.username} commented in {self.room.name} at {self.timestamp}"
     

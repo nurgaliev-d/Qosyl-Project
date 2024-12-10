@@ -18,5 +18,5 @@ urlpatterns = [
     path('profile/<int:user_id>/', views.userProfile, name='profile'),
     path('send-friend-request/<int:user_id>/', views.send_friend_request, name='send_friend_request'),
     path('remove-friend/<int:user_id>/', views.remove_friend, name='remove_friend'),
-    path('activity-chart/<int:user_id>/', views.activity_chart, name='activity_chart'),
+    path('analytics/', views.analytics, name='analytics'),
 ]
