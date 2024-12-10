@@ -1,9 +1,17 @@
 from django.urls import path
 from . import views
+from rest_framework.routers import DefaultRouter
+from .views import UserViewSet
+
+router = DefaultRouter()
+router.register(r'users', UserViewSet)
+
+urlpatterns = router.urls
+
 
 # app_name = 'users'
 
-urlpatterns = [
+urlpatterns += [
     # path('login/', views.loginPage, name="login"),
     path('login/',views.loginPage, name = "login"),
     path('logout/', views.logoutUser, name="logout"),

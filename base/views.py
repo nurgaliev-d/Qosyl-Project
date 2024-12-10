@@ -7,6 +7,8 @@ from django.contrib.auth import authenticate, login, logout
 from rooms.models import Room
 from chat.models import Message
 from users.models import User , Topic
+from rest_framework import viewsets
+from .serializers import *
 
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
@@ -30,3 +32,7 @@ def home(request):
 def activityPage(request):
     room_messages = Message.objects.all()
     return render(request, 'base/activity.html', {'room_messages': room_messages})
+
+class BaseViewSet(viewsets.ModelViewSet):
+    queryset = Base.objects.all()
+    serializer_class = BaseSerializer

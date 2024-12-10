@@ -8,6 +8,8 @@ from .models import  User , Topic, FriendRequest, Friendship
 from rooms.models import Room
 from .forms import  UserForm, MyUserCreationForm
 from django.http import JsonResponse
+from rest_framework import viewsets
+from .serializers import *
 
 def loginPage(request):
     page = 'login'
@@ -201,3 +203,7 @@ def remove_friend(request, user_id):
     else:
         messages.warning(request, f"You are not friends with {user.username}.")
     return redirect('friends_view')
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer

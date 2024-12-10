@@ -5,6 +5,8 @@ from chat.models import Message
 from users.models import  Topic 
 from django.http import HttpResponse
 from rooms.forms import  RoomForm
+from rest_framework import viewsets
+from .serializers import RoomSerializer
 
 def room(request, pk):
     room = Room.objects.get(id=pk)
@@ -76,3 +78,7 @@ def deleteRoom(request, pk):
         room.delete()
         return redirect('home')
     return render(request, 'rooms/delete.html', {'obj': room})
+
+class RoomViewSet(viewsets.ModelViewSet):
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializer
