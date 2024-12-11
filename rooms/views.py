@@ -9,9 +9,17 @@ from django.http import JsonResponse
 from django.db.models import Count
 from rest_framework import viewsets
 from .serializers import RoomSerializer
+import logging
 
 def room(request, pk):
-    room = Room.objects.get(id=pk)
+    try:
+        room = Room.objects.get(id=pk)
+    except Room.DoesNotExist:
+        logger.error("Room with id %s does not exist", pk)
+        return HttpResponse('Room not found', status=404)
+
+    logger.info("Room %s accessed by user: %s", room.name, request.user)
+    
     room_messages = room.message_set.all()
     participants = room.participants.all()
 
@@ -28,24 +36,29 @@ def room(request, pk):
                'participants': participants}
     return render(request, 'rooms/room.html', context)
 
+logger = logging.getLogger(__name__)
+
 @login_required(login_url='login')
 def createRoom(request):
+    logger.info("Create Room view accessed by user: %s", request.user)
     form = RoomForm()
     topics = Topic.objects.all()
     if request.method == 'POST':
+        logger.debug("Form submitted with data: %s", request.POST)
         topic_name = request.POST.get('topic')
         topic, created = Topic.objects.get_or_create(name=topic_name)
-
         Room.objects.create(
             host=request.user,
             topic=topic,
             name=request.POST.get('name'),
             description=request.POST.get('description'),
         )
+        logger.info("Room created successfully by user: %s", request.user)
         return redirect('home')
 
     context = {'form': form, 'topics': topics}
     return render(request, 'rooms/room_form.html', context)
+
 
 
 @login_required(login_url='login')

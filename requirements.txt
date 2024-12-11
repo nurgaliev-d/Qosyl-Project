@@ -13,3 +13,9 @@ psycopg2-binary==2.9.9
 PyJWT==2.8.0
 sqlparse==0.4.4
 virtualenv==20.25.1
+channels-redis
+django-redis
+drf-yasg
+chartjs
+daphne
+django-cors-headers
