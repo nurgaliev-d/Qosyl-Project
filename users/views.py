@@ -232,7 +232,7 @@ def remove_friend(request, user_id):
         messages.success(request, f"{user.username} has been removed from your friends list.")
     else:
         messages.warning(request, f"You are not friends with {user.username}.")
-    return redirect('friends_view')
+    return redirect('friends')
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()

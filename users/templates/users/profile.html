@@ -25,7 +25,7 @@
               <button id="showChartBtn" class="btn btn--secondary btn--pill">Show Chart</button>
             {% else %}
               {% if is_friend %}
-                <form action="{% url 'remove_friend' user.id %}" method="POST">
+               <form action="/remove-friend/{{ user.id }}/" method="POST">
                   {% csrf_token %}
                   <button type="submit" class="btn btn--secondary btn--pill">Remove Friend</button>
                 </form>

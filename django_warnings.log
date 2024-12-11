@@ -615,3 +615,187 @@ WARNING 2024-12-12 03:13:32,626 log Not Found: /chat/2/assets/favicon.ico
 WARNING 2024-12-12 03:13:32,627 runserver [33mHTTP GET /chat/2/assets/favicon.ico 404 [0.05, 127.0.0.1:54204][0m
 WARNING 2024-12-12 03:13:37,925 log Not Found: /friends/assets/favicon.ico
 WARNING 2024-12-12 03:13:37,926 runserver [33mHTTP GET /friends/assets/favicon.ico 404 [0.02, 127.0.0.1:54204][0m
+WARNING 2024-12-12 04:12:36,835 log Not Found: /assets/favicon.ico
+WARNING 2024-12-12 04:12:36,836 runserver [33mHTTP GET /assets/favicon.ico 404 [0.01, 127.0.0.1:54880][0m
+WARNING 2024-12-12 04:12:39,502 log Not Found: /login/assets/favicon.ico
+WARNING 2024-12-12 04:12:39,505 runserver [33mHTTP GET /login/assets/favicon.ico 404 [0.02, 127.0.0.1:54880][0m
+WARNING 2024-12-12 04:12:43,083 log Not Found: /all/assets/favicon.ico
+WARNING 2024-12-12 04:12:43,084 runserver [33mHTTP GET /all/assets/favicon.ico 404 [0.02, 127.0.0.1:54880][0m
+WARNING 2024-12-12 04:12:45,907 log Not Found: /chat/11/assets/favicon.ico
+WARNING 2024-12-12 04:12:45,909 runserver [33mHTTP GET /chat/11/assets/favicon.ico 404 [0.03, 127.0.0.1:54879][0m
+WARNING 2024-12-12 04:12:48,599 log Not Found: /friends/assets/favicon.ico
+WARNING 2024-12-12 04:12:48,600 runserver [33mHTTP GET /friends/assets/favicon.ico 404 [0.02, 127.0.0.1:54880][0m
+WARNING 2024-12-12 04:13:01,569 log Not Found: /topics/assets/favicon.ico
+WARNING 2024-12-12 04:13:01,571 runserver [33mHTTP GET /topics/assets/favicon.ico 404 [0.02, 127.0.0.1:54880][0m
+WARNING 2024-12-12 04:15:08,220 log Not Found: /chat/2/assets/favicon.ico
+WARNING 2024-12-12 04:15:08,221 runserver [33mHTTP GET /chat/2/assets/favicon.ico 404 [0.02, 127.0.0.1:54953][0m
+WARNING 2024-12-12 04:15:31,313 log Not Found: /chat/4/assets/favicon.ico
+WARNING 2024-12-12 04:15:31,315 runserver [33mHTTP GET /chat/4/assets/favicon.ico 404 [0.02, 127.0.0.1:54887][0m
+WARNING 2024-12-12 04:15:36,600 log Not Found: /update-user/assets/favicon.ico
+WARNING 2024-12-12 04:15:36,600 runserver [33mHTTP GET /update-user/assets/favicon.ico 404 [0.01, 127.0.0.1:54887][0m
+WARNING 2024-12-12 04:15:40,507 log Not Found: /profile/4/assets/favicon.ico
+WARNING 2024-12-12 04:15:40,508 runserver [33mHTTP GET /profile/4/assets/favicon.ico 404 [0.02, 127.0.0.1:54887][0m
+WARNING 2024-12-12 04:16:06,268 log Not Found: /profile/2/assets/favicon.ico
+WARNING 2024-12-12 04:16:06,270 runserver [33mHTTP GET /profile/2/assets/favicon.ico 404 [0.02, 127.0.0.1:54953][0m
+ERROR 2024-12-12 04:16:07,174 log Internal Server Error: /remove_friend/2/
+Traceback (most recent call last):
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\core\handlers\base.py", line 253, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\users\views.py", line 235, in remove_friend
+    return redirect('friends_view')
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\shortcuts.py", line 49, in redirect
+    return redirect_class(resolve_url(to, *args, **kwargs))
+                          ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\shortcuts.py", line 180, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'friends_view' not found. 'friends_view' is not a valid view function or pattern name.
+ERROR 2024-12-12 04:16:07,185 runserver [35;1mHTTP POST /remove_friend/2/ 500 [0.05, 127.0.0.1:54953][0m
+ERROR 2024-12-12 04:24:11,477 log Internal Server Error: /remove-friend/4/
+Traceback (most recent call last):
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\core\handlers\base.py", line 253, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\users\views.py", line 235, in remove_friend
+    return redirect('friends_view')
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\shortcuts.py", line 49, in redirect
+    return redirect_class(resolve_url(to, *args, **kwargs))
+                          ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\shortcuts.py", line 180, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'friends_view' not found. 'friends_view' is not a valid view function or pattern name.
+ERROR 2024-12-12 04:24:11,487 runserver [35;1mHTTP POST /remove-friend/4/ 500 [0.05, 127.0.0.1:55018][0m
+ERROR 2024-12-12 04:24:53,550 log Internal Server Error: /remove-friend/4/
+Traceback (most recent call last):
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\core\handlers\base.py", line 253, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\users\views.py", line 235, in remove_friend
+    return redirect('friends_view')
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\shortcuts.py", line 49, in redirect
+    return redirect_class(resolve_url(to, *args, **kwargs))
+                          ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\shortcuts.py", line 180, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'friends_view' not found. 'friends_view' is not a valid view function or pattern name.
+ERROR 2024-12-12 04:24:53,558 runserver [35;1mHTTP POST /remove-friend/4/ 500 [0.03, 127.0.0.1:55018][0m
+ERROR 2024-12-12 04:24:56,240 log Internal Server Error: /remove-friend/4/
+Traceback (most recent call last):
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\core\handlers\base.py", line 253, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\users\views.py", line 235, in remove_friend
+    return redirect('friends_view')
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\shortcuts.py", line 49, in redirect
+    return redirect_class(resolve_url(to, *args, **kwargs))
+                          ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\shortcuts.py", line 180, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'friends_view' not found. 'friends_view' is not a valid view function or pattern name.
+ERROR 2024-12-12 04:24:56,248 runserver [35;1mHTTP POST /remove-friend/4/ 500 [0.03, 127.0.0.1:55018][0m
+WARNING 2024-12-12 04:30:44,835 log Not Found: /profile/3/assets/favicon.ico
+WARNING 2024-12-12 04:30:44,836 runserver [33mHTTP GET /profile/3/assets/favicon.ico 404 [0.01, 127.0.0.1:55057][0m
+WARNING 2024-12-12 04:30:47,406 log Not Found: /profile/10/assets/favicon.ico
+WARNING 2024-12-12 04:30:47,407 runserver [33mHTTP GET /profile/10/assets/favicon.ico 404 [0.02, 127.0.0.1:55057][0m
+WARNING 2024-12-12 04:30:49,034 log Not Found: /profile/11/assets/favicon.ico
+WARNING 2024-12-12 04:30:49,035 runserver [33mHTTP GET /profile/11/assets/favicon.ico 404 [0.01, 127.0.0.1:55057][0m

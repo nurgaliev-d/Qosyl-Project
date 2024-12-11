@@ -30,5 +30,5 @@ urlpatterns += [
     path('send_friend_request/<int:user_id>/', views.send_friend_request, name='send_friend_request'),
     path('accept_friend_request/<int:request_id>/', views.approve_friend_request, name='approve_friend_request'),
     path('reject_friend_request/<int:request_id>/', views.reject_friend_request, name='reject_friend_request'),
-    path('remove_friend/<int:user_id>/', views.remove_friend, name='remove_friend'),
+    path('remove-friend/<int:user_id>/', views.remove_friend, name='remove_friend'),
 ]
