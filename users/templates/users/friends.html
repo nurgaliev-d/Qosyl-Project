@@ -22,6 +22,12 @@
                             {% endif %}
                         </div>
                         <span class="friend-name" style="font-size: 1em; font-weight: 600; color: .white;">{{ friend.username }}</span>
+                        <!-- <div class="chat-button" style="text-align: right; margin-top: 10px;">
+                            <a href="{% url 'chat_room' user.id %}" 
+                               style="text-decoration: none; background-color: #5dd693; color: white; padding: 8px 15px; border-radius: 5px; font-weight: bold;">
+                              Chat
+                            </a>
+                        </div> -->
                     </div>
                 {% empty %}
                     <p class="no-friends-text" style="text-align: center; font-size: 1.2em; color: .white;">No friends yet.</p>

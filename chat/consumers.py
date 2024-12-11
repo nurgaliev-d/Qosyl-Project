@@ -56,24 +56,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'message': message
             }
         )
-        # async def receive(self, text_data):
-        #     data = json.loads(text_data)
-        #     message = data.get('message')
-        #     sender = self.scope["user"]  # Пользователь, отправляющий сообщение
 
-        #     # Проверка, что пользователь авторизован и существует получатель
-        #     if self.recipient and sender.is_authenticated:
-        #         await self.save_message(sender, self.recipient, message)  # Передаем все аргументы
-
-        #     # Отправка сообщения в группу WebSocket
-        #     await self.channel_layer.group_send(
-        #         self.room_group_name,
-        #         {
-        #             'type': 'chat_message',
-        #             'message': message,
-        #             'sender': sender.username,
-        #         }
-        #     )
 
     async def chat_message(self, event):
         # Отправка полученного сообщения пользователю
