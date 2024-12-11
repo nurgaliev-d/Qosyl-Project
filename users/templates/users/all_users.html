@@ -18,34 +18,31 @@
       <div class="layout__body">
         <!-- Loop through all users and display each one -->
         {% for user in users %}
-<div class="user-card">
-  <a href="{% url 'profile' user.id %}" style="text-decoration: none; color: inherit;">
-    <div class="user-card__header" style="display: flex; align-items: center; gap: 10px;">
-      <!-- Avatar Image -->
-      <div class="user-avatar">
-        {% if user.avatar %}
-          <img src="{{ user.avatar.url }}" alt="{{ user.username }}'s Avatar" class="avatar-img" 
-            style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%; border: 2px solid #ccc;">
-        {% else %}
-          <img src="{% static 'images/avatar.svg' %}" alt="Default Avatar" class="avatar-img"
-            style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%; border: 2px solid #ccc;">
-        {% endif %}
-      </div>
-      <!-- User Info -->
-      <div class="user-info" style="flex-grow: 1;">
-        <p><strong>Email:</strong> {{ user.email }}</p>
-        <p><strong>Username:</strong> {{ user.username }}</p>
-      </div>
+<div class="user-card" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #ccc;">
+  <a href="{% url 'profile' user.id %}" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px; flex-grow: 1;">
+    <!-- Avatar Image -->
+    <div class="user-avatar">
+      {% if user.avatar %}
+        <img src="{{ user.avatar.url }}" alt="{{ user.username }}'s Avatar" class="avatar-img" 
+          style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%; border: 2px solid #ccc;">
+      {% else %}
+        <img src="{% static 'images/avatar.svg' %}" alt="Default Avatar" class="avatar-img"
+          style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%; border: 2px solid #ccc;">
+      {% endif %}
+    </div>
+    <!-- User Info -->
+    <div class="user-info" style="flex-grow: 1;">
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Username:</strong> {{ user.username }}</p>
     </div>
   </a>
-  <div class="chat-button" style="text-align: right; margin-top: 10px;">
+  <!-- Chat Button -->
+  <div class="chat-button">
     <a href="{% url 'chat_room' user.id %}" 
        style="text-decoration: none; background-color: #5dd693; color: white; padding: 8px 15px; border-radius: 5px; font-weight: bold;">
       Chat
     </a>
   </div>
-  <!-- Divider with enhanced style -->
-  <div class="user-card__divider" style="border-top: 2px solid #ccc; margin: 10px 0;"></div>
 </div>
 {% empty %}
   <p>No users found.</p>

@@ -49,3 +49,569 @@ WARNING 2024-12-12 01:29:03,258 log Not Found: /chat/3/assets/favicon.ico
 WARNING 2024-12-12 01:29:03,259 runserver [33mHTTP GET /chat/3/assets/favicon.ico 404 [0.06, 127.0.0.1:53505][0m
 WARNING 2024-12-12 01:29:06,424 log Not Found: /update-user/assets/favicon.ico
 WARNING 2024-12-12 01:29:06,425 runserver [33mHTTP GET /update-user/assets/favicon.ico 404 [0.01, 127.0.0.1:53505][0m
+WARNING 2024-12-12 03:01:03,466 log Not Found: /assets/favicon.ico
+WARNING 2024-12-12 03:01:03,468 runserver [33mHTTP GET /assets/favicon.ico 404 [0.03, 127.0.0.1:54090][0m
+WARNING 2024-12-12 03:02:07,176 log Not Found: /login/assets/favicon.ico
+WARNING 2024-12-12 03:02:07,177 runserver [33mHTTP GET /login/assets/favicon.ico 404 [0.02, 127.0.0.1:54110][0m
+WARNING 2024-12-12 03:02:11,334 log Not Found: /all/assets/favicon.ico
+WARNING 2024-12-12 03:02:11,335 runserver [33mHTTP GET /all/assets/favicon.ico 404 [0.02, 127.0.0.1:54110][0m
+WARNING 2024-12-12 03:02:40,811 log Not Found: /profile/4/assets/favicon.ico
+WARNING 2024-12-12 03:02:40,812 runserver [33mHTTP GET /profile/4/assets/favicon.ico 404 [0.03, 127.0.0.1:54110][0m
+WARNING 2024-12-12 03:04:57,238 log Not Found: /favicon.ico
+WARNING 2024-12-12 03:04:57,239 runserver [33mHTTP GET /favicon.ico 404 [0.02, 127.0.0.1:54123][0m
+ERROR 2024-12-12 03:07:55,454 log Internal Server Error: /all/
+Traceback (most recent call last):
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\core\handlers\base.py", line 253, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\users\views.py", line 120, in get_all_users
+    return render(request, 'users/all_users.html', {'users': users})
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\loader_tags.py", line 210, in render
+    return template.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 173, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'make_chat' not found. 'make_chat' is not a valid view function or pattern name.
+ERROR 2024-12-12 03:07:55,484 runserver [35;1mHTTP GET /all/ 500 [0.14, 127.0.0.1:54130][0m
+ERROR 2024-12-12 03:08:41,484 log Internal Server Error: /all/
+Traceback (most recent call last):
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\core\handlers\base.py", line 253, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\users\views.py", line 120, in get_all_users
+    return render(request, 'users/all_users.html', {'users': users})
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\loader_tags.py", line 210, in render
+    return template.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 173, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'make_chat' not found. 'make_chat' is not a valid view function or pattern name.
+ERROR 2024-12-12 03:08:41,518 runserver [35;1mHTTP GET /all/ 500 [0.12, 127.0.0.1:54130][0m
+ERROR 2024-12-12 03:10:32,344 log Internal Server Error: /all/
+Traceback (most recent call last):
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\core\handlers\base.py", line 253, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\users\views.py", line 120, in get_all_users
+    return render(request, 'users/all_users.html', {'users': users})
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\loader_tags.py", line 210, in render
+    return template.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 173, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'make_chat' not found. 'make_chat' is not a valid view function or pattern name.
+ERROR 2024-12-12 03:10:32,371 runserver [35;1mHTTP GET /all/ 500 [0.08, 127.0.0.1:54133][0m
+ERROR 2024-12-12 03:10:32,724 log Internal Server Error: /all/
+Traceback (most recent call last):
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\core\handlers\base.py", line 253, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\users\views.py", line 120, in get_all_users
+    return render(request, 'users/all_users.html', {'users': users})
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\loader_tags.py", line 210, in render
+    return template.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 173, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'make_chat' not found. 'make_chat' is not a valid view function or pattern name.
+ERROR 2024-12-12 03:10:32,747 runserver [35;1mHTTP GET /all/ 500 [0.12, 127.0.0.1:54133][0m
+ERROR 2024-12-12 03:10:32,852 log Internal Server Error: /all/
+Traceback (most recent call last):
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\core\handlers\base.py", line 253, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\users\views.py", line 120, in get_all_users
+    return render(request, 'users/all_users.html', {'users': users})
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\loader_tags.py", line 210, in render
+    return template.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 173, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'make_chat' not found. 'make_chat' is not a valid view function or pattern name.
+ERROR 2024-12-12 03:10:32,871 runserver [35;1mHTTP GET /all/ 500 [0.09, 127.0.0.1:54133][0m
+ERROR 2024-12-12 03:10:32,976 log Internal Server Error: /all/
+Traceback (most recent call last):
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\core\handlers\base.py", line 253, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\users\views.py", line 120, in get_all_users
+    return render(request, 'users/all_users.html', {'users': users})
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\loader_tags.py", line 210, in render
+    return template.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 173, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'make_chat' not found. 'make_chat' is not a valid view function or pattern name.
+ERROR 2024-12-12 03:10:32,996 runserver [35;1mHTTP GET /all/ 500 [0.09, 127.0.0.1:54133][0m
+WARNING 2024-12-12 03:13:32,626 log Not Found: /chat/2/assets/favicon.ico
+WARNING 2024-12-12 03:13:32,627 runserver [33mHTTP GET /chat/2/assets/favicon.ico 404 [0.05, 127.0.0.1:54204][0m
+WARNING 2024-12-12 03:13:37,925 log Not Found: /friends/assets/favicon.ico
+WARNING 2024-12-12 03:13:37,926 runserver [33mHTTP GET /friends/assets/favicon.ico 404 [0.02, 127.0.0.1:54204][0m

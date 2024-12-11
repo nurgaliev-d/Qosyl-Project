@@ -19,3 +19,4 @@ drf-yasg
 chartjs
 daphne
 django-cors-headers
+pytest
