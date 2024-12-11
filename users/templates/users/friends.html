@@ -1,19 +1,97 @@
-{% extends 'main.html' %}
+{% extends "main.html" %}
+{% load filters %}
+{% load static %}
 {% block content %}
-<main class="friends-page layout">
-  <div class="container">
-    <h1>Friends of {{ user.username }}</h1>
-    <ul>
-      {% for friend in friends %}
-        <li>
-          <a href="{% url 'profile' friend.username %}">
-            {{ friend.username }}
-          </a>
-        </li>
-      {% empty %}
-        <p>No friends found.</p>
-      {% endfor %}
-    </ul>
-  </div>
-</main>
-{% endblock content %}
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+        <!-- Profile Header -->
+        <div class="profile-header" style="text-align: center; margin-bottom: 40px;">
+            <h1 class="profile-title" style="font-size: 2.5em; color: .white; font-weight: bold;">Friends of {{ user.username }}</h1>
+        </div>
+
+        <!-- Friends Section -->
+        <section class="friends-section" style="margin-bottom: 40px;">
+            <h2 class="section-title" style="font-size: 1.8em; color: .white; margin-bottom: 20px;">Friends</h2>
+            <div class="friends-list" style="display: flex; flex-wrap: wrap; gap: 20px;">
+                {% for friend in user.friends.all %}
+                    <div class="friend-item" style="width: 150px; text-align: center; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); border-radius: 10px; padding: 10px; transition: transform 0.3s ease;">
+                        <div class="avatar-container" style="width: 60px; height: 60px; overflow: hidden; border-radius: 50%; margin: 0 auto 10px;">
+                            {% if friend.avatar %}
+                                <img src="{{ friend.avatar.url }}" alt="{{ friend.username }}'s Avatar" style="width: 100%; height: 100%; object-fit: cover;">
+                            {% else %}
+                                <img src="{% static 'images/avatar.svg' %}" alt="Default Avatar" style="width: 100%; height: 100%; object-fit: cover;">
+                            {% endif %}
+                        </div>
+                        <span class="friend-name" style="font-size: 1em; font-weight: 600; color: .white;">{{ friend.username }}</span>
+                    </div>
+                {% empty %}
+                    <p class="no-friends-text" style="text-align: center; font-size: 1.2em; color: .white;">No friends yet.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Friend Requests Section -->
+        <section class="friend-requests-section" style="margin-bottom: 40px;">
+            <h2 class="section-title" style="font-size: 1.8em; color: .white; margin-bottom: 20px;">Friend Requests</h2>
+            <div class="friend-requests-list" style="background-color: #f9f9f9; padding: 20px; border-radius: 10px;">
+                {% for request in user.received_requests.all %}
+                    <div class="friend-request-item" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #ddd;">
+                        <span class="request-sender" style="font-size: 1.1em; font-weight: 600; color: #333;">{{ request.from_user.username }}</span>
+                        <div class="request-actions" style="display: flex; gap: 10px;">
+                            <form action="{% url 'approve_friend_request' request_id=request.id %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="approve-btn" style="background-color: #4CAF50; color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">
+                                    Approve
+                                </button>
+                            </form>
+                            <form action="{% url 'reject_friend_request' request_id=request.id %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="reject-btn" style="background-color: #f44336; color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">
+                                    Reject
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p class="no-requests-text" style="text-align: center; font-size: 1.2em; color: #777;">No received requests.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- All Users Section -->
+        <section class="all-users-section">
+            <h2 class="section-title" style="font-size: 1.8em; color: .white; margin-bottom: 20px;">All Users</h2>
+            <div class="all-users-list" style="display: flex; flex-wrap: wrap; gap: 20px;">
+                {% for user in users %}
+                    <div class="user-item" style="width: 150px; text-align: center; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); border-radius: 10px; padding: 10px; transition: transform 0.3s ease;">
+                        <div class="avatar-container" style="width: 60px; height: 60px; overflow: hidden; border-radius: 50%; margin: 0 auto 10px;">
+                            {% if user.avatar %}
+                                <img src="{{ user.avatar.url }}" alt="{{ user.username }}'s Avatar" style="width: 100%; height: 100%; object-fit: cover;">
+                            {% else %}
+                                <img src="{% static 'images/avatar.svg' %}" alt="Default Avatar" style="width: 100%; height: 100%; object-fit: cover;">
+                            {% endif %}
+                        </div>
+                        <span class="user-name" style="font-size: 1em; font-weight: 600; color: #444;">{{ user.username }}</span>
+                        <div class="user-actions" style="margin-top: 10px;">
+                            {% if user in request.user.friends.all %}
+                                <button disabled class="friend-btn" style="background-color: #ddd; color: #777; border: none; padding: 5px 15px; border-radius: 5px; cursor: not-allowed;">Friend</button>
+                            {% elif request.user == user %}
+                                <button disabled class="self-btn" style="background-color: #ddd; color: #777; border: none; padding: 5px 15px; border-radius: 5px; cursor: not-allowed;">Can't add yourself</button>
+                            {% elif friend_requests_sent|get_item:user.id %}
+                                <button disabled class="requested-btn" style="background-color: #ddd; color: #777; border: none; padding: 5px 15px; border-radius: 5px; cursor: not-allowed;">Requested</button>
+                            {% else %}
+                                <form action="{% url 'send_friend_request' user_id=user.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" class="add-friend-btn" style="background-color: #2196F3; color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">
+                                        Add Friend
+                                    </button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% empty %}
+                    <p class="no-users-text" style="text-align: center; font-size: 1.2em; color: #777;">No users available to add.</p>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+{% endblock %}
