@@ -1,0 +1,165 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<main class="profile-page layout layout--3">
+  <div class="container">
+    <!-- Topics Start -->
+    {% include 'users/topics_component.html' %}
+    <!-- Topics End -->
+
+    <!-- Room List Start -->
+    <div class="roomList">
+      <div class="profile">
+        <div class="profile__avatar">
+          <div class="avatar avatar--large active">
+            <img src="{{ user.avatar.url }}" />
+          </div>
+        </div>
+        <div class="profile__info">
+          <h3>{{ user.name }}</h3>
+          <p>@{{ user.username }}</p>
+
+          <div class="profile__actions">
+            {% if is_own_profile %}
+              <a href="{% url 'update-user' %}" class="btn btn--main btn--pill">Edit Profile</a>
+              <button id="showChartBtn" class="btn btn--secondary btn--pill">Show Chart</button>
+            {% else %}
+              {% if is_friend %}
+                <form action="{% url 'remove_friend' user.id %}" method="POST">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn--secondary btn--pill">Remove Friend</button>
+                </form>
+              {% elif existing_request %}
+                <button class="btn btn--disabled btn--pill" disabled>Friend Request Sent</button>
+              {% else %}
+                <form action="{% url 'send_friend_request' user.id %}" method="POST">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn--main btn--pill">Add Friend</button>
+                </form>
+              {% endif %}
+            {% endif %}
+          </div>
+        </div>
+        <div class="profile__about">
+          <h3>About</h3>
+          <p>{{ user.bio }}</p>
+        </div>
+      </div>
+
+      <div class="roomList__header">
+        <div>
+          <h2>Study Rooms</h2>
+        </div>
+      </div>
+      {% include 'base/feed_component.html' %}
+    </div>
+    <!-- Room List End -->
+
+    <!-- Chart Container -->
+    <div id="chartContainer" class="chart-container hidden">
+      <h2>Number of Comments per Room</h2>
+      <canvas id="commentsChart"></canvas>
+      <button id="closeChartBtn" class="btn btn--secondary btn--pill">Close Chart</button>
+    </div>
+
+    {% include 'chat/activity_component.html' %}
+  </div>
+</main>
+
+<!-- Chart.js Script -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const roomNames = ["Django", "Swift"];
+  const numComments = [10, 5];
+  document.addEventListener("DOMContentLoaded", function () {
+    const chartContainer = document.querySelector(".chart-container");
+    const showChartBtn = document.getElementById("showChartBtn");
+    const closeChartBtn = document.getElementById("closeChartBtn");
+
+    function toggleChart() {
+      chartContainer.classList.toggle("hidden");
+    }
+
+    showChartBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      toggleChart();
+
+      if (!chartContainer.dataset.chartInitialized) {
+        
+
+        if (roomNames.length === 0 || numComments.length === 0) {
+          chartContainer.innerHTML = "<p>No data available to display</p>";
+          return;
+        }
+
+        if (roomNames.length === 0 || numComments.length === 0) {
+        chartContainer.innerHTML = `
+          <p style="text-align: center; font-size: 16px; color: gray;">
+            No data available to display.
+          </p>
+        `;
+        return;
+      }
+
+        const ctxComments = document.getElementById('commentsChart').getContext('2d');
+        new Chart(ctxComments, {
+          type: 'bar',
+          data: {
+            labels: roomNames,
+            datasets: [{
+              label: 'Number of Comments',
+              data: numComments,
+              backgroundColor: 'rgba(75, 192, 192, 0.6)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+
+        chartContainer.dataset.chartInitialized = true;
+      }
+    });
+
+    closeChartBtn.addEventListener("click", function () {
+      chartContainer.classList.add("hidden");
+    });
+  });
+</script>
+
+
+<!-- Styles -->
+<style>
+  .chart-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+
+  .chart-container.hidden {
+    display: none;
+  }
+
+  .chart-wrapper {
+    width: 400px;
+    height: 300px;
+  }
+
+  .btn {
+    margin: 5px;
+  }
+
+</style>
+{% endblock content %}
