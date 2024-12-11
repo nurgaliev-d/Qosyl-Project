@@ -1,0 +1,57 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    {% if recipient %}
+        <p>User found.</p>
+        <h1>Chat with {{ recipient.name }}</h1>
+        <!-- Здесь будет место для отображения чата -->
+        <textarea id="chat-log" cols="100" rows="20" readonly></textarea><br>
+        <input id="chat-message-input" type="text" size="100">
+        <button id="chat-message-submit">Send</button>
+        
+        <script>
+            // const chatSocket = new WebSocket(
+            //     'ws://' + window.location.host + '/ws/chat/{{ recipient.id }}/'
+            // );
+            const chatSocket = new WebSocket('ws://' + window.location.host + '/ws/chat/{{ recipient.id }}/');
+            
+
+            chatSocket.onmessage = function(e) {
+                const data = JSON.parse(e.data);
+                document.querySelector('#chat-log').value += (data.message + '\n');
+            };
+
+            chatSocket.onclose = (event) => {
+                if (event.wasClean) {
+                    console.log('Closed cleanly, code=' + event.code + ', reason=' + event.reason);
+                } else {
+                    console.error(`Socket closed with code: ${event.code}`);
+                    console.error('Chat socket closed unexpectedly');
+                }
+            };
+
+            chatSocket.onerror = (error) => {
+                console.error('WebSocket error:', error);
+            };
+
+            // Убедитесь, что WebSocket не закрыт перед отправкой сообщений
+            document.querySelector('#chat-message-submit').onclick = function(e) {
+                const messageInputDom = document.querySelector('#chat-message-input');
+                const message = messageInputDom.value;
+
+                if (chatSocket.readyState === WebSocket.OPEN) {
+                    chatSocket.send(JSON.stringify({
+                        'message': message
+                    }));
+                } else {
+                    console.error("WebSocket not open.");
+                }
+
+                messageInputDom.value = '';
+            };
+            
+        </script>
+    {% else %}
+        <p>User not found.</p>
+    {% endif %}
+{% endblock %}

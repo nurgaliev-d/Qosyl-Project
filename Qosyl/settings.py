@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'daphne',
     'django.contrib.staticfiles',
-    
     'base',
     'users',
     'rooms',
@@ -48,11 +48,26 @@ INSTALLED_APPS = [
     
     'rest_framework',
     'corsheaders',
+
     'drf_yasg',
 ]
 
 ROOT_URLCONF = 'Qosyl.urls'
 AUTH_USER_MODEL = 'users.User'
+
+# WSGI_APPLICATION = 'Qosyl.wsgi.application'
+ASGI_APPLICATION = 'Qosyl.asgi.application'
+# settings.py
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
+
 # MIDDLEWARE = [
 #     'django.middleware.security.SecurityMiddleware',
 #     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -78,6 +93,16 @@ MIDDLEWARE = [
 
 
 
+# Пример настройки для использования Redis как кэш-сервера
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/1',  # Укажите правильный порт и номер базы данных
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
 
 TEMPLATES = [
     {
@@ -96,8 +121,6 @@ TEMPLATES = [
         },
     },
 ]
-
-WSGI_APPLICATION = 'Qosyl.wsgi.application'
 
 
 # Database
