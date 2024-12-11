@@ -1,0 +1,51 @@
+WARNING 2024-12-12 01:25:07,260 log Not Found: /create-room/assets/favicon.ico
+WARNING 2024-12-12 01:25:07,261 runserver [33mHTTP GET /create-room/assets/favicon.ico 404 [0.03, 127.0.0.1:53477][0m
+WARNING 2024-12-12 01:25:17,521 log Not Found: /profile/4/assets/favicon.ico
+WARNING 2024-12-12 01:25:17,523 runserver [33mHTTP GET /profile/4/assets/favicon.ico 404 [0.05, 127.0.0.1:53477][0m
+WARNING 2024-12-12 01:25:26,932 log Not Found: /room/5/script.js
+WARNING 2024-12-12 01:25:26,933 runserver [33mHTTP GET /room/5/script.js 404 [0.03, 127.0.0.1:53477][0m
+WARNING 2024-12-12 01:25:26,968 log Not Found: /room/5/assets/favicon.ico
+WARNING 2024-12-12 01:25:26,969 runserver [33mHTTP GET /room/5/assets/favicon.ico 404 [0.03, 127.0.0.1:53477][0m
+ERROR 2024-12-12 01:25:29,049 log Internal Server Error: /delete-room/5/
+Traceback (most recent call last):
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 518, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\core\handlers\base.py", line 253, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 468, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\asgiref\sync.py", line 522, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\user\Desktop\Qosyl-Project\rooms\views.py", line 95, in deleteRoom
+    return render(request, 'rooms/delete.html', {'obj': room})
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\user\Desktop\Qosyl-Project\.venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: rooms/delete.html
+ERROR 2024-12-12 01:25:29,055 runserver [35;1mHTTP GET /delete-room/5/ 500 [0.12, 127.0.0.1:53477][0m
+WARNING 2024-12-12 01:25:32,484 log Not Found: /update-room/5/assets/favicon.ico
+WARNING 2024-12-12 01:25:32,485 runserver [33mHTTP GET /update-room/5/assets/favicon.ico 404 [0.03, 127.0.0.1:53477][0m
+WARNING 2024-12-12 01:25:35,194 log Not Found: /room/5/script.js
+WARNING 2024-12-12 01:25:35,194 runserver [33mHTTP GET /room/5/script.js 404 [0.03, 127.0.0.1:53477][0m
+WARNING 2024-12-12 01:29:03,258 log Not Found: /chat/3/assets/favicon.ico
+WARNING 2024-12-12 01:29:03,259 runserver [33mHTTP GET /chat/3/assets/favicon.ico 404 [0.06, 127.0.0.1:53505][0m
+WARNING 2024-12-12 01:29:06,424 log Not Found: /update-user/assets/favicon.ico
+WARNING 2024-12-12 01:29:06,425 runserver [33mHTTP GET /update-user/assets/favicon.ico 404 [0.01, 127.0.0.1:53505][0m
