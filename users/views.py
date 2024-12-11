@@ -8,17 +8,14 @@ from .models import  User , Topic, FriendRequest, Friendship
 from rooms.models import Room
 from .forms import  UserForm, MyUserCreationForm
 from django.http import JsonResponse
-<<<<<<< HEAD
 from django.db import connection
 from django.db.models import Count
 from django.core.serializers import serialize
 from rooms.models import Room
 from chat.models import Message
 import json
-=======
 from rest_framework import viewsets
 from .serializers import *
->>>>>>> feature/friends
 
 def loginPage(request):
     page = 'login'
@@ -170,8 +167,6 @@ def add_friend_view(request, username):
         messages.warning(request, "You are already friends or cannot add this user.")
     return redirect('profile', username=username)
 
-<<<<<<< HEAD
-
 def analytics(request):
     # Get the current user
     user = request.user
@@ -194,7 +189,7 @@ def analytics(request):
     }
 
     return render(request, 'profile.html', context)
-=======
+
 @login_required
 def approve_friend_request(request, request_id):
     # Get the friend request object
@@ -242,4 +237,3 @@ def remove_friend(request, user_id):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
->>>>>>> feature/friends

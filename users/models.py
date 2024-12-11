@@ -2,12 +2,9 @@ from django.db import models
 from django.utils import timezone
 from chat.models import Message
 from django.contrib.auth.models import AbstractUser
-<<<<<<< HEAD
 from rooms.models import Room
-=======
 from django.db.models import Q
->>>>>>> feature/friends
-# C:\Users\Lenovo\Desktop\мидкаджанго\Qosyl\users\models.py
+
 
 from django.contrib.auth.models import BaseUserManager
 
@@ -99,10 +96,6 @@ class FriendRequest(models.Model):
         if self.from_user == self.to_user:
             raise ValueError("You cannot send a friend request to yourself.")
         super().save(*args, **kwargs)
-<<<<<<< HEAD
-
-
-
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
@@ -118,8 +111,6 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.user.username} commented in {self.room.name} at {self.timestamp}"
-    
-=======
         
 class Friendship(models.Model):
     user1 = models.ForeignKey(User, related_name='friendship_user1', on_delete=models.CASCADE)
@@ -132,4 +123,3 @@ class Friendship(models.Model):
     # Ensures only one friendship record exists for two users
     class Meta:
         unique_together = ('user1', 'user2')
->>>>>>> feature/friends
