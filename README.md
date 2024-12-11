@@ -151,13 +151,13 @@ Build a network of friends and interact with them through profiles and shared ac
 # Project Members
 | Full Name | ID |
 |------------|-------------|
-|  Dilnaz  | ...    |
+|  Kuanyshbekov Madi  | 22B030384   |
 |   |     |
 |  Akhanayeva Aruzhan  | 22B030516   |
 |   |     |
-|  Madi  | ...    |
+|  Zeinolla Dilnaz  | 22B031177    |
 |   |     |
-|  Dias  | ...   |
+|  Nurgaliev Dias  | 22B031188   |
 
 
 
